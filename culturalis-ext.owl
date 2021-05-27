@@ -7,7 +7,536 @@
 @base <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext> .
 
 <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext> rdf:type owl:Ontology ;
-                                                                     owl:imports <http://culturalis.org/cult/0.1> ;
                                                                      rdfs:comment "This ontology extends Culturalis modelling data about cultural institutes or cultural sites."@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2003/06/sw-vocab-status/ns#term_status
+<http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://culturalis.org/cult/0.1#actAs
+<http://culturalis.org/cult/0.1#actAs> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain <http://www.w3.org/ns/org#Organization> ;
+                                       rdfs:range <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+                                       rdfs:comment "Proprietà che associa la classe org:Organization con il ruolo che ricopre nei confronti di un istituto/luogo della cultura (ente preposto alla tutelaâ¦)"@it ;
+                                       rdfs:label "Act as"@en ,
+                                                  "Agisce in qualità di"@it ;
+                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#covers
+<http://culturalis.org/cult/0.1#covers> rdf:type owl:ObjectProperty ;
+                                        rdfs:domain <http://culturalis.org/cult/0.1#Catalogue> ;
+                                        rdfs:range owl:Thing ;
+                                        rdfs:comment "Questa proprietà associa il catalogo con la porzione di patrimonio culturale che descrive."@it ;
+                                        rdfs:label "Covers"@en ,
+                                                   "Descrive"@it ;
+                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#extend
+<http://culturalis.org/cult/0.1#extend> rdf:type owl:ObjectProperty ;
+                                        rdfs:domain <http://culturalis.org/cult/0.1#Collections> ;
+                                        rdfs:range <http://culturalis.org/cult/0.1#Extent> ;
+                                        rdfs:label "Extend"@en ,
+                                                   "Ha consistenza"@it ;
+                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#hasBeginning
+<http://culturalis.org/cult/0.1#hasBeginning> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://culturalis.org/cult/0.1#Name> ;
+                                              rdfs:range :Interval ;
+                                              rdfs:label "Is valid from"@en ,
+                                                         "Valido a partire da"@it ;
+                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#hasCatalogue
+<http://culturalis.org/cult/0.1#hasCatalogue> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://culturalis.org/cult/0.1#Agent> ;
+                                              rdfs:range [ rdf:type owl:Class ;
+                                                           owl:unionOf ( <http://culturalis.org/cult/0.1#Catalogue>
+                                                                         <http://purl.org/dc/terms/BibliographicResource>
+                                                                       )
+                                                         ] ;
+                                              rdfs:comment "Questa proprietà consente di associare l'istituto culturale con i cataloghi che ne descrivono il patrimonio o l'istituto stesso."@it ;
+                                              rdfs:label "E' descritto in un catalogo"@it ,
+                                                         "Has catalogue"@en ;
+                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#hasEnd
+<http://culturalis.org/cult/0.1#hasEnd> rdf:type owl:ObjectProperty ;
+                                        rdfs:domain <http://culturalis.org/cult/0.1#Name> ;
+                                        rdfs:range :Interval ;
+                                        rdfs:label "Is valid to"@en ,
+                                                   "Valido fino a"@it ;
+                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#hasRole
+<http://culturalis.org/cult/0.1#hasRole> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://culturalis.org/cult/0.1#Organization> ,
+                                                     :Operator ;
+                                         rdfs:range <http://culturalis.org/cult/0.1#RoleInTime> ;
+                                         rdfs:comment "Proprietà che associa la classe org:Organization con il ruolo che ricopre nei confronti di un istituto/luogo della cultura o di un patrimonio culturale (ente preposto alla tutela, finanziatore, titolare proprietario di un fondo depositato presso un istituto culturale) "@it ;
+                                         rdfs:label "Has Role"@en ,
+                                                    "Ricopre il ruolo di"@it ;
+                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#include
+<http://culturalis.org/cult/0.1#include> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://culturalis.org/cult/0.1#Collections> ;
+                                         rdfs:range owl:Thing ;
+                                         rdfs:comment "Proprietà che associa la classe Collections con le singole collezioni che compongono il patrimonio culturale dellâistituto/luogo della cultura"@it ;
+                                         rdfs:label "Include"@en ,
+                                                    "Include"@it ;
+                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#involves
+<http://culturalis.org/cult/0.1#involves> rdf:type owl:ObjectProperty ;
+                                          rdfs:domain <http://culturalis.org/cult/0.1#Activity> ;
+                                          rdfs:range owl:Thing ;
+                                          rdfs:label "Coinvolge"@it ,
+                                                     "Involves"@en ;
+                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#maintains
+<http://culturalis.org/cult/0.1#maintains> rdf:type owl:ObjectProperty ;
+                                           rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+                                           rdfs:range <http://culturalis.org/cult/0.1#Collections> ;
+                                           rdfs:comment "Proprietà che associa la classe CulturalInstitutionOrSite con il patrimonio culturale che conserva, possiede o detiene."@it ;
+                                           rdfs:label "Conserva"@en ,
+                                                      "Maintains"@it ;
+                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#named
+<http://culturalis.org/cult/0.1#named> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+                                       rdfs:range <http://culturalis.org/cult/0.1#Name> ;
+                                       rdfs:label "E' denominato"@it ,
+                                                  "Is named"@en ;
+                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#performs
+<http://culturalis.org/cult/0.1#performs> rdf:type owl:ObjectProperty ;
+                                          rdfs:domain <http://culturalis.org/cult/0.1#Organization> ;
+                                          rdfs:range <http://culturalis.org/cult/0.1#Activity> ;
+                                          rdfs:label "Esegue"@it ,
+                                                     "Performs"@en ;
+                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#regardsTo
+<http://culturalis.org/cult/0.1#regardsTo> rdf:type owl:ObjectProperty ;
+                                           rdfs:domain <http://culturalis.org/cult/0.1#RoleInTime> ;
+                                           rdfs:range [ rdf:type owl:Class ;
+                                                        owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
+                                                                      <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                                                    )
+                                                      ] ;
+                                           rdfs:label "Regards to"@en ,
+                                                      "Riferito a"@it ;
+                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#situated
+<http://culturalis.org/cult/0.1#situated> rdf:type owl:ObjectProperty ;
+                                          rdfs:domain [ rdf:type owl:Class ;
+                                                        owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
+                                                                      <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                                                    )
+                                                      ] ;
+                                          rdfs:range <http://culturalis.org/cult/0.1#Site> ;
+                                          rdfs:comment "Proprietà che associa le classi CulturalInstitutionOrSite e Collections alle loro sedi."@it ;
+                                          rdfs:label "E' situato"@it ,
+                                                     "Situated in/at"@en ;
+                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#canAccess
+:canAccess rdf:type owl:ObjectProperty ;
+           rdfs:domain :Ticket ;
+           rdfs:range [ rdf:type owl:Class ;
+                        owl:unionOf ( <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                      :Event
+                                    )
+                      ] ;
+           <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+           <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:46:19Z"^^xsd:dateTime ;
+           rdfs:comment "A ticket grants access to an event or to a cultural institution or site" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasCurrency
+:hasCurrency rdf:type owl:ObjectProperty ;
+             rdfs:domain :Price ;
+             rdfs:range :Currency ;
+             <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+             <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:01:02Z"^^xsd:dateTime ;
+             rdfs:comment "A price is expressed in a certain currency" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasCustomerType
+:hasCustomerType rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Fare ;
+                 rdfs:range :CustomerType ;
+                 <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+                 <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:51:53Z"^^xsd:dateTime ;
+                 rdfs:comment "A fare is different in relation to the customer type" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasDuration
+:hasDuration rdf:type owl:ObjectProperty ;
+             rdfs:domain :Validity ;
+             rdfs:range [ rdf:type owl:Class ;
+                          owl:unionOf ( :Interval
+                                        :TemporalDuration
+                                      )
+                        ] ;
+             <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+             <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:58:28Z"^^xsd:dateTime ;
+             rdfs:comment "Tickets and fares have a validity" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasPrice
+:hasPrice rdf:type owl:ObjectProperty ;
+          rdfs:domain :Fare ;
+          rdfs:range :Price ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:03:27Z"^^xsd:dateTime ;
+          rdfs:comment "A fare consists of a price" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasSubEvent
+:hasSubEvent rdf:type owl:ObjectProperty ;
+             rdfs:domain :Event ;
+             rdfs:range :Event ;
+             <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+             <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:17:23Z"^^xsd:dateTime ;
+             rdfs:comment "An event may have a subevent" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasValidity
+:hasValidity rdf:type owl:ObjectProperty ;
+             rdfs:domain :Fare ,
+                         :Ticket ;
+             rdfs:range :Validity ;
+             <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+             <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:38:08Z"^^xsd:dateTime ;
+             rdfs:comment "Tickets and fares have a validity" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hostedBy
+:hostedBy rdf:type owl:ObjectProperty ;
+          rdfs:domain :Event ;
+          rdfs:range <http://culturalis.org/cult/0.1#Site> ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:18:27Z"^^xsd:dateTime ;
+          rdfs:comment "An event is hosted by a site" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#includes
+:includes rdf:type owl:ObjectProperty ;
+          rdfs:domain :Fare ;
+          rdfs:range :Ticket ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:50:32Z"^^xsd:dateTime ;
+          rdfs:comment "A fare may be included in a ticket" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#reportsTo
+:reportsTo rdf:type owl:ObjectProperty ;
+           rdfs:domain :Operator ;
+           rdfs:range :Operator ;
+           <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+           <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:25:25Z"^^xsd:dateTime ;
+           rdfs:comment "Reports to" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#takesPlaceDuring
+:takesPlaceDuring rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Event ;
+                  rdfs:range :Interval ;
+                  <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+                  <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:19:14Z"^^xsd:dateTime ;
+                  rdfs:comment "Event takes places during a certain interval of time" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#timeInterval
+:timeInterval rdf:type owl:ObjectProperty ;
+              rdfs:domain <http://culturalis.org/cult/0.1#RoleInTime> ;
+              rdfs:range :Interval ;
+              <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+              <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:58:39Z"^^xsd:dateTime ;
+              rdfs:comment "A certain state is valid during a time interval" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#withRole
+:withRole rdf:type owl:ObjectProperty ;
+          rdfs:domain <http://culturalis.org/cult/0.1#RoleInTime> ;
+          rdfs:range :Role ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:23:43Z"^^xsd:dateTime ;
+          rdfs:comment "Which role" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#currencyValue
+:currencyValue rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Price ;
+               rdfs:range xsd:float ;
+               <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:00:24Z"^^xsd:dateTime ;
+               rdfs:comment "Currency value" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Fare ,
+                         :Role ,
+                         :Ticket ;
+             rdfs:range rdfs:Literal ;
+             <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+             <http://purl.org/dc/elements/1.1/date> "2021-05-27T10:53:26Z"^^xsd:dateTime ;
+             rdfs:comment "Description" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Event ,
+                  :Operator ,
+                  :Role ,
+                  :Ticket ;
+      rdfs:range rdfs:Literal ;
+      <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+      <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:57:49Z"^^xsd:dateTime ;
+      rdfs:comment "Name" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://culturalis.org/cult/0.1#Activity
+<http://culturalis.org/cult/0.1#Activity> rdf:type owl:Class ;
+                                          rdfs:label "Activity"@en ,
+                                                     "Attività"@it ;
+                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#Agent
+<http://culturalis.org/cult/0.1#Agent> rdf:type owl:Class .
+
+
+###  http://culturalis.org/cult/0.1#Catalogue
+<http://culturalis.org/cult/0.1#Catalogue> rdf:type owl:Class ;
+                                           rdfs:label "Catalogo"@it ,
+                                                      "Catalogue"@en ;
+                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#Collections
+<http://culturalis.org/cult/0.1#Collections> rdf:type owl:Class ;
+                                             rdfs:comment "Patrimonio culturale, insieme dei beni culturali conservati da o presso un Istituto o luogo della cultura."@it ;
+                                             rdfs:label "Collections"@en ,
+                                                        "Patrimonio culturale"@it ;
+                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#CulturalInstitutionOrSite
+<http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> rdf:type owl:Class ;
+                                                           owl:equivalentClass <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                           rdfs:label "Cultural institution/site"@en ,
+                                                                      "Istituto/luogo della cultura"@it ;
+                                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#Extent
+<http://culturalis.org/cult/0.1#Extent> rdf:type owl:Class ;
+                                        rdfs:comment "Consistenza fisica, cronologica e/o logica del patrimonio culturale."@it ;
+                                        rdfs:label "Consistenza"@it ,
+                                                   "Extent"@en ;
+                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#Library
+<http://culturalis.org/cult/0.1#Library> rdf:type owl:Class ;
+                                         owl:equivalentClass <http://schema.org/Library> .
+
+
+###  http://culturalis.org/cult/0.1#Museum
+<http://culturalis.org/cult/0.1#Museum> rdf:type owl:Class ;
+                                        owl:equivalentClass <http://schema.org/Museum> .
+
+
+###  http://culturalis.org/cult/0.1#Name
+<http://culturalis.org/cult/0.1#Name> rdf:type owl:Class ;
+                                      rdfs:comment "Denominazione dellâistituto/luogo della cultura."@it ;
+                                      rdfs:label "Name"@en ,
+                                                 "Nome"@it ;
+                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#Organization
+<http://culturalis.org/cult/0.1#Organization> rdf:type owl:Class ;
+                                              owl:equivalentClass <http://www.w3.org/ns/org#Organization> ;
+                                              rdfs:label "Organization"@en ,
+                                                         "Organizzazione"@it ;
+                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#RoleInTime
+<http://culturalis.org/cult/0.1#RoleInTime> rdf:type owl:Class ;
+                                            owl:equivalentClass <http://purl.org/spar/pro/RoleInTime> ;
+                                            rdfs:label "Role in time"@en ,
+                                                       "Ruolo nel tempo"@it ;
+                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/cult/0.1#Site
+<http://culturalis.org/cult/0.1#Site> rdf:type owl:Class ;
+                                      owl:equivalentClass <http://culturalis.org/ocsa/1.0#Site> ;
+                                      rdfs:comment "Sede dellâistituto/luogo della cultura."@it ;
+                                      rdfs:label "Sede"@it ,
+                                                 "Site"@en ;
+                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://culturalis.org/ocsa/1.0#Agent
+<http://culturalis.org/ocsa/1.0#Agent> rdf:type owl:Class .
+
+
+###  http://culturalis.org/ocsa/1.0#Site
+<http://culturalis.org/ocsa/1.0#Site> rdf:type owl:Class .
+
+
+###  http://purl.org/dc/terms/BibliographicResource
+<http://purl.org/dc/terms/BibliographicResource> rdf:type owl:Class .
+
+
+###  http://purl.org/spar/pro/RoleInTime
+<http://purl.org/spar/pro/RoleInTime> rdf:type owl:Class .
+
+
+###  http://schema.org/Library
+<http://schema.org/Library> rdf:type owl:Class .
+
+
+###  http://schema.org/Museum
+<http://schema.org/Museum> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Currency
+:Currency rdf:type owl:Class ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:01:20Z"^^xsd:dateTime ;
+          rdfs:comment "This class denotes a currency"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CustomerType
+:CustomerType rdf:type owl:Class ;
+              <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+              <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:51:29Z"^^xsd:dateTime ;
+              rdfs:comment "This class denotes a customer type"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Event
+:Event rdf:type owl:Class ;
+       <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+       <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:53:04Z"^^xsd:dateTime ;
+       rdfs:comment "This class denotes an event"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Fare
+:Fare rdf:type owl:Class ;
+      <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+      <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:53:12Z"^^xsd:dateTime ;
+      rdfs:comment "This class denotes a fare"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Interval
+:Interval rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator
+:Operator rdf:type owl:Class ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:52:20Z"^^xsd:dateTime ;
+          rdfs:comment "This class denotes an operator"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Price
+:Price rdf:type owl:Class ;
+       <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+       <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:53:20Z"^^xsd:dateTime ;
+       rdfs:comment "This class denotes a price"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Role
+:Role rdf:type owl:Class ;
+      <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+      <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:53:19Z"^^xsd:dateTime ;
+      rdfs:comment "This class denotes a role"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#TemporalDuration
+:TemporalDuration rdf:type owl:Class ;
+                  rdfs:comment "Extensión de tiempo; duración de un intervalo de tiempo independiente de su posición de inicio particular."@es ,
+                               "Time extent; duration of a time interval separate from its particular start position"@en ;
+                  rdfs:label "Temporal duration"@en ,
+                             "duración temporal"@es ;
+                  <http://www.w3.org/2004/02/skos/core#definition> "Extensión de tiempo; duración de un intervalo de tiempo independiente de su posición de inicio particular."@es ,
+                                                                   "Time extent; duration of a time interval separate from its particular start position"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Ticket
+:Ticket rdf:type owl:Class ;
+        <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+        <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:53:26Z"^^xsd:dateTime ;
+        rdfs:comment "This class denotes a ticket"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity
+:Validity rdf:type owl:Class ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:53:30Z"^^xsd:dateTime ;
+          rdfs:comment "This class denotes the validity of tickets and fares"@en .
+
+
+###  http://www.w3.org/ns/org#Organization
+<http://www.w3.org/ns/org#Organization> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class .
+
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
