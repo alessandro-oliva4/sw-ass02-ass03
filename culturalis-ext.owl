@@ -205,10 +205,15 @@
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasAccessCondition
 :hasAccessCondition rdf:type owl:ObjectProperty ;
-                    rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                                :Event
+                                              )
+                                ] ;
                     rdfs:range :AccessCondition ;
                     <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                    <http://purl.org/dc/elements/1.1/date> "2021-05-27T14:10:54Z"^^xsd:dateTime .
+                    <http://purl.org/dc/elements/1.1/date> "2021-05-27T14:10:54Z"^^xsd:dateTime ;
+                    rdfs:comment "Property used to associate a CIS or an Event to it access condition" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasAddress
@@ -225,7 +230,8 @@
                   rdfs:domain :OpeningHoursSpecification ;
                   rdfs:range :AdmissionType ;
                   <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                  <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:53:53Z"^^xsd:dateTime .
+                  <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:53:53Z"^^xsd:dateTime ;
+                  rdfs:comment "Property used to associate the opening hours specification to the admission type" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasContactPoint
@@ -262,7 +268,8 @@
               rdfs:domain :OpeningHoursSpecification ;
               rdfs:range <http://www.w3.org/2006/time#DayOfWeek> ;
               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-              <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:53:17Z"^^xsd:dateTime .
+              <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:53:17Z"^^xsd:dateTime ;
+              rdfs:comment "Property used to associate a day of the week to an opening hours specification" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasDuration
@@ -334,6 +341,15 @@
           rdfs:comment "A fee may be included in a ticket" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#isInvolvedInProject
+:isInvolvedInProject rdf:type owl:ObjectProperty ;
+                     rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+                     rdfs:range :Project ;
+                     <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                     <http://purl.org/dc/elements/1.1/date> "2021-05-28T13:13:05Z"^^xsd:dateTime ;
+                     rdfs:comment "Property used to represent a relationship between a CIS and a project" .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#isPartOf
 :isPartOf rdf:type owl:ObjectProperty ;
           rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
@@ -368,7 +384,8 @@
                 rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
                 rdfs:range :Equipment ;
                 <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                <http://purl.org/dc/elements/1.1/date> "2021-05-28T12:55:30Z"^^xsd:dateTime .
+                <http://purl.org/dc/elements/1.1/date> "2021-05-28T12:55:30Z"^^xsd:dateTime ;
+                rdfs:comment "Property that permits to associate the CIS with its own equipment" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#provides
@@ -512,7 +529,8 @@
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasWebsite
 :hasWebsite rdf:type owl:DatatypeProperty ;
-            rdfs:domain :ContactPoint ;
+            rdfs:domain :ContactPoint ,
+                        :Project ;
             rdfs:range xsd:anyURI ;
             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
             <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:37:55Z"^^xsd:dateTime ;
@@ -528,6 +546,7 @@
                   :Equipment ,
                   :Event ,
                   :Operator ,
+                  :Project ,
                   :Role ,
                   :Service ,
                   :TemporaryClosureType ,
@@ -686,7 +705,8 @@ owl:topDataProperty rdfs:domain :ContactPoint ;
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#AccessCondition
 :AccessCondition rdf:type owl:Class ;
                  <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                 <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:59:28Z"^^xsd:dateTime .
+                 <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:59:28Z"^^xsd:dateTime ;
+                 rdfs:comment "It represent the access condition to a CIS or Event" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#AdmissionType
@@ -720,7 +740,8 @@ owl:topDataProperty rdfs:domain :ContactPoint ;
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Equipment
 :Equipment rdf:type owl:Class ;
            <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-           <http://purl.org/dc/elements/1.1/date> "2021-05-28T12:50:39Z"^^xsd:dateTime .
+           <http://purl.org/dc/elements/1.1/date> "2021-05-28T12:50:39Z"^^xsd:dateTime ;
+           rdfs:comment "represents the equipment made available by the CIS (printer, totem, ecc.)" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Event
@@ -764,6 +785,13 @@ owl:topDataProperty rdfs:domain :ContactPoint ;
        rdfs:comment "This class denotes a price"@en .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Project
+:Project rdf:type owl:Class ;
+         <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+         <http://purl.org/dc/elements/1.1/date> "2021-05-28T13:14:00Z"^^xsd:dateTime ;
+         rdfs:comment "It represent a project in which a CIS can be involved" .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Role
 :Role rdf:type owl:Class ;
       <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
@@ -799,7 +827,8 @@ owl:topDataProperty rdfs:domain :ContactPoint ;
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#TemporaryClosureType
 :TemporaryClosureType rdf:type owl:Class ;
                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                      <http://purl.org/dc/elements/1.1/date> "2021-05-27T14:10:02Z"^^xsd:dateTime .
+                      <http://purl.org/dc/elements/1.1/date> "2021-05-27T14:10:02Z"^^xsd:dateTime ;
+                      rdfs:comment "It represent the cause of the temporary closure" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Ticket
