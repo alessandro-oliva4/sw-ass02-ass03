@@ -567,11 +567,6 @@
        rdfs:comment "Opening time" .
 
 
-###  http://www.w3.org/2002/07/owl#topDataProperty
-owl:topDataProperty rdfs:domain :ContactPoint ;
-                    rdfs:range xsd:anyURI .
-
-
 #################################################################
 #    Classes
 #################################################################
@@ -671,6 +666,16 @@ owl:topDataProperty rdfs:domain :ContactPoint ;
 ###  http://culturalis.org/cult/0.1#RoleInTime
 <http://culturalis.org/cult/0.1#RoleInTime> rdf:type owl:Class ;
                                             owl:equivalentClass <http://purl.org/spar/pro/RoleInTime> ;
+                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <http://culturalis.org/cult/0.1#regardsTo> ;
+                                                              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass :Role
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :withRole ;
+                                                              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass :Role
+                                                            ] ;
                                             rdfs:label "Role in time"@en ,
                                                        "Ruolo nel tempo"@it ;
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
