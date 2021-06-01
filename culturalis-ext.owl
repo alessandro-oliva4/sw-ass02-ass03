@@ -117,7 +117,7 @@
 ###  http://culturalis.org/cult/0.1#involves
 <http://culturalis.org/cult/0.1#involves> rdf:type owl:ObjectProperty ;
                                           rdfs:domain <http://culturalis.org/cult/0.1#Activity> ;
-                                          rdfs:range owl:Thing ;
+                                          rdfs:range :CulturalEntity ;
                                           rdfs:label "Coinvolge"@it ,
                                                      "Involves"@en ;
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -607,6 +607,7 @@
 ###  http://culturalis.org/cult/0.1#CulturalInstitutionOrSite
 <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> rdf:type owl:Class ;
                                                            owl:equivalentClass <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                           rdfs:subClassOf :CulturalEntity ;
                                                            rdfs:label "Cultural institution/site"@en ,
                                                                       "Istituto/luogo della cultura"@it ;
                                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -767,6 +768,13 @@
               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
               <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:30:31Z"^^xsd:dateTime ;
               rdfs:comment "It represents a contact point (email, phone number...)" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity
+:CulturalEntity rdf:type owl:Class ;
+                <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                <http://purl.org/dc/elements/1.1/date> "2021-06-01T15:13:06Z"^^xsd:dateTime ;
+                rdfs:comment "This class denotes a cultural entity (should not be instantiated)" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Currency
