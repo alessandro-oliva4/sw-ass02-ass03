@@ -5,9 +5,76 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX cult: <http://culturalis.org/cult/0.1#>
 PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
+# count of CIS subclasses
+
+SELECT (COUNT(?subCIS) AS ?NClasses)
+WHERE {
+?subCIS rdfs:subClassOf* cult:CulturalInstitutionOrSite .
+}
+
+# number of libraries
+
+SELECT (COUNT(?library) as ?libraryCount)
+WHERE {
+?library rdf:type cult:Library .
+}
+
+# count of collections for each CIS
+
 SELECT ?cis (COUNT(?collection) as ?collectionCount)
 WHERE {
 ?collection rdf:type cult:Collections .
+?cis rdf:type cult:CulturalInstitutionOrType .
 ?cis cult:Conserva ?collection .
 }
 GROUP BY ?cis
+
+# collections with "Archivio" in their name
+
+SELECT ?collection
+WHERE {
+?collection a cult:Collections;
+	rdfs:label ?label .
+filter contains(?label,"Archivio")   
+}
+
+# contact points with opening time after 8:30
+
+SELECT ?contactPoint
+WHERE {
+?contactPoint a ext:ContactPoint;
+	ext:available ?spec .
+?spec a ext:OpeningHoursSpecification;
+	ext:opens ?time.
+FILTER ( xsd:time(?time) > "08:30:00"^^xsd:time )
+}
+
+# count of activies hosted for each site
+
+SELECT ?site (COUNT(?activity) as ?activityCount)
+WHERE {
+?activity rdf:type cult:Activity .
+?site cult:hosts ?activity .
+}
+GROUP BY ?site
+
+# sites that contains collections with "Fondo" in their name
+
+SELECT ?site
+WHERE {
+?collection a cult:Collections ;
+	rdfs:label ?label .
+?site a cult:Site;
+	ext:isSiteOf ?collection .
+filter contains(?label,"Fondo")
+}
+
+# select CIS and related services (blank field if a CIS has no services)
+
+SELECT ?cis ?service
+WHERE {
+?cis a cult:CulturalInstitutionOrSite .
+OPTIONAL {
+?cis ext:provides ?service .
+}
+}

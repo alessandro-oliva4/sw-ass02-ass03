@@ -30,6 +30,14 @@
 
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#time
+xsd:time rdf:type rdfs:Datatype .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -440,7 +448,7 @@
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#closes
 :closes rdf:type owl:DatatypeProperty ;
         rdfs:domain :OpeningHoursSpecification ;
-        rdfs:range xsd:dateTime ;
+        rdfs:range xsd:time ;
         <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
         <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:54:29Z"^^xsd:dateTime ;
         rdfs:comment "Closure time" .
@@ -561,7 +569,7 @@
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#opens
 :opens rdf:type owl:DatatypeProperty ;
        rdfs:domain :OpeningHoursSpecification ;
-       rdfs:range xsd:dateTime ;
+       rdfs:range xsd:time ;
        <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
        <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:56:21Z"^^xsd:dateTime ;
        rdfs:comment "Opening time" .
