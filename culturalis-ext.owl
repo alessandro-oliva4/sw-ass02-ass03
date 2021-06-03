@@ -143,8 +143,11 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://culturalis.org/cult/0.1#named
 <http://culturalis.org/cult/0.1#named> rdf:type owl:ObjectProperty ;
-                                       rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                   <http://culturalis.org/cult/0.1#Site> ;
+                                       rdfs:domain [ rdf:type owl:Class ;
+                                                     owl:unionOf ( <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                                                   <http://culturalis.org/ocsa/1.0#Site>
+                                                                 )
+                                                   ] ;
                                        rdfs:range <http://culturalis.org/cult/0.1#Name> ;
                                        rdfs:label "E' denominato"@it ,
                                                   "Is named"@en ;
@@ -243,9 +246,12 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasContactPoint
 :hasContactPoint rdf:type owl:ObjectProperty ;
-                 rdfs:domain <http://culturalis.org/cult/0.1#Site> ,
-                             :Event ,
-                             :Service ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( <http://culturalis.org/ocsa/1.0#Site>
+                                             :Event
+                                             :Service
+                                           )
+                             ] ;
                  rdfs:range :ContactPoint ;
                  <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                  <http://purl.org/dc/elements/1.1/date> "2021-05-27T14:41:22Z"^^xsd:dateTime ;
@@ -312,8 +318,11 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasValidity
 :hasValidity rdf:type owl:ObjectProperty ;
-             rdfs:domain :Fee ,
-                         :Ticket ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Fee
+                                         :Ticket
+                                       )
+                         ] ;
              rdfs:range :Validity ;
              <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
              <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:38:08Z"^^xsd:dateTime ;
@@ -379,8 +388,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#isSiteOf
 :isSiteOf rdf:type owl:ObjectProperty ;
           rdfs:domain <http://culturalis.org/cult/0.1#Site> ;
-          rdfs:range <http://culturalis.org/cult/0.1#Collections> ,
-                     <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+          rdfs:range [ rdf:type owl:Class ;
+                       owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
+                                     <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                   )
+                     ] ;
           <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
           <http://purl.org/dc/elements/1.1/date> "2021-05-27T14:44:13Z"^^xsd:dateTime ;
           rdfs:comment "Property used to associate a site to a CIS" .
@@ -465,16 +477,19 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#description
 :description rdf:type owl:DatatypeProperty ;
-             rdfs:domain <http://culturalis.org/cult/0.1#Collections> ,
-                         <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                         <http://culturalis.org/cult/0.1#Site> ,
-                         :AccessCondition ,
-                         :AdmissionType ,
-                         :Fee ,
-                         :Role ,
-                         :Service ,
-                         :TemporaryClosureType ,
-                         :Ticket ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
+                                         <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                         <http://culturalis.org/ocsa/1.0#Site>
+                                         :AccessCondition
+                                         :AdmissionType
+                                         :Fee
+                                         :Role
+                                         :Service
+                                         :TemporaryClosureType
+                                         :Ticket
+                                       )
+                         ] ;
              rdfs:range rdfs:Literal ;
              <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
              <http://purl.org/dc/elements/1.1/date> "2021-05-27T10:53:26Z"^^xsd:dateTime ;
@@ -543,8 +558,11 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasWebsite
 :hasWebsite rdf:type owl:DatatypeProperty ;
-            rdfs:domain :ContactPoint ,
-                        :Project ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :ContactPoint
+                                        :Project
+                                      )
+                        ] ;
             rdfs:range xsd:anyURI ;
             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
             <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:37:55Z"^^xsd:dateTime ;
@@ -553,19 +571,22 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#name
 :name rdf:type owl:DatatypeProperty ;
-      rdfs:domain <http://culturalis.org/cult/0.1#Collections> ,
-                  <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                  <http://culturalis.org/cult/0.1#Site> ,
-                  :AdmissionType ,
-                  :Equipment ,
-                  :Event ,
-                  :Operator ,
-                  :Project ,
-                  :Role ,
-                  :Service ,
-                  :TemporaryClosureType ,
-                  :Ticket ,
-                  :TypeOfBooking ;
+      rdfs:domain [ rdf:type owl:Class ;
+                    owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
+                                  <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
+                                  <http://culturalis.org/ocsa/1.0#Site>
+                                  :AdmissionType
+                                  :Equipment
+                                  :Event
+                                  :Operator
+                                  :Project
+                                  :Role
+                                  :Service
+                                  :TemporaryClosureType
+                                  :Ticket
+                                  :TypeOfBooking
+                                )
+                  ] ;
       rdfs:range rdfs:Literal ;
       <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
       <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:57:49Z"^^xsd:dateTime ;
