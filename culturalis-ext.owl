@@ -587,7 +587,8 @@ xsd:time rdf:type rdfs:Datatype .
 
 
 ###  http://culturalis.org/cult/0.1#Agent
-<http://culturalis.org/cult/0.1#Agent> rdf:type owl:Class .
+<http://culturalis.org/cult/0.1#Agent> rdf:type owl:Class ;
+                                       owl:equivalentClass <http://culturalis.org/ocsa/1.0#Agent> .
 
 
 ###  http://culturalis.org/cult/0.1#ArcheologicalArea

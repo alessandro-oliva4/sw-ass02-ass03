@@ -25,7 +25,7 @@ SELECT ?cis (COUNT(?collection) as ?collectionCount)
 WHERE {
 ?collection rdf:type cult:Collections .
 ?cis rdf:type cult:CulturalInstitutionOrType .
-?cis cult:Conserva ?collection .
+?cis cult:mantains ?collection .
 }
 GROUP BY ?cis
 
@@ -77,4 +77,82 @@ WHERE {
 OPTIONAL {
 ?cis ext:provides ?service .
 }
+}
+
+
+
+
+# count how many times CIS "nome" has changed their "ruolo" since 2010
+SELECT (COUNT(?o) AS ?totalNumberOfNames)
+WHERE {
+	?s cult:hasRole ?o .
+	?o ext:roleFor 'nome' .
+	?o ext:withRole 'ruolo' .
+	?interval a ext:timeInterval;
+		ext:startDate ?startdate .
+	FILTER ( xsd:dateTime(?startDate) >= '2010-01-01'^^xsd:dateTime )
+}
+
+# events hosted by "museo x"
+SELECT ?event
+WHERE {
+	?cis a cult:CulturalInstitutionOrType ;
+		ext:name ?cisName .
+	?event a ext:Event ;
+		ext:hostedBy ?cis .
+	FILTER ( ?cisName='museo x'^^ext:name )
+}
+
+# agents that are not CIS
+SELECT ?entity
+WHERE {
+	?entity rdf:type ?subAgents.
+	?subAgents rdfs:subClassOf* cult:CulturalInstitutionOrSite .
+}
+
+# first 10 events featuring at least a subevent in descending order by number of subevents
+SELECT ?event (count(?property) as ?numSubEvents) where {
+  values ?property {
+    ext:hasSubEvent
+  }
+  ?event ?property ?object 
+}
+GROUP BY ?event 
+ORDER BY desc(?numSubEvents)
+LIMIT 10
+
+# free tickets' description
+SELECT ?des
+WHERE {
+   ?fee a ext:Fee .
+   FILTER NOT EXISTS {
+      ?fee ext:includes ?ticket
+   }
+   ?ticket ext:description ?des .
+}
+
+# tickets that give access to event "ev" or cis "c"
+SELECT ?ticket
+WHERE {
+	{ ?ticket ext:forAccess ?event . }
+	UNION
+	{ ?ticket ext:forAccess ?cis . }
+	FILTER ( ?event='ev'^^ext:name )
+	FILTER ( ?cis='c'^^ext:name )
+}
+
+# fee with expired validity
+SELECT ?fee
+WHERE {
+	?fee ext:hasValidity ?validity .
+	?validity ext:hasDuration ?duration .
+	?duration ext:startDate ?endDate .
+	FILTER ( xsd:dateTime(?endDate) < xsd:dateTime(NOW()) )
+}
+
+# access condition "x" exists
+ASK
+WHERE {
+	?accessCondition ext:description ?desc .
+	FILTER ( ?desc='x'^^rdfs:Literal )
 }
