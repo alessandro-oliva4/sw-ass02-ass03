@@ -24,8 +24,8 @@ WHERE {
 SELECT ?cis (COUNT(?collection) as ?collectionCount)
 WHERE {
 ?collection rdf:type cult:Collections .
-?cis rdf:type cult:CulturalInstitutionOrType .
-?cis cult:mantains ?collection .
+?cis rdf:type cult:CulturalInstitutionOrSite .
+?cis cult:maintains ?collection .
 }
 GROUP BY ?cis
 
@@ -34,11 +34,11 @@ GROUP BY ?cis
 SELECT ?collection
 WHERE {
 ?collection a cult:Collections;
-	rdfs:label ?label .
-filter contains(?label,"Archivio")   
+	ext:name ?name .
+filter( regex(str(?name), "Archivio" ))
 }
 
-# contact points with opening time after 8:30
+# contact points with opening time after 8:00
 
 SELECT ?contactPoint
 WHERE {
@@ -46,7 +46,7 @@ WHERE {
 	ext:available ?spec .
 ?spec a ext:OpeningHoursSpecification;
 	ext:opens ?time.
-FILTER ( xsd:time(?time) > "08:30:00"^^xsd:time )
+FILTER ( xsd:time(?time) > "08:00:00"^^xsd:time )
 }
 
 # count of activies hosted for each site
@@ -63,10 +63,10 @@ GROUP BY ?site
 SELECT ?site
 WHERE {
 ?collection a cult:Collections ;
-	rdfs:label ?label .
+	ext:name ?name .
 ?site a cult:Site;
 	ext:isSiteOf ?collection .
-filter contains(?label,"Fondo")
+filter contains(?name,"Fondo")
 }
 
 # select CIS and related services (blank field if a CIS has no services)
