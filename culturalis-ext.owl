@@ -468,19 +468,25 @@ xsd:time rdf:type rdfs:Datatype .
              rdfs:domain <http://culturalis.org/cult/0.1#Collections> ,
                          <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
                          <http://culturalis.org/cult/0.1#Site> ,
+                         :AccessCondition ,
                          :AdmissionType ,
                          :Fee ,
-                         :OpeningHoursSpecification ,
                          :Role ,
                          :Service ,
-                         :TemporaryClosure ,
                          :TemporaryClosureType ,
-                         :Ticket ,
-                         :TypeOfBooking ;
+                         :Ticket ;
              rdfs:range rdfs:Literal ;
              <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
              <http://purl.org/dc/elements/1.1/date> "2021-05-27T10:53:26Z"^^xsd:dateTime ;
              rdfs:comment "Description" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#endDate
+:endDate rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Interval ;
+         <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+         <http://purl.org/dc/elements/1.1/date> "2021-06-03T13:09:01Z"^^xsd:dateTime ;
+         rdfs:comment "End datetime for and interval" .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasCertifiedEmail
@@ -573,6 +579,15 @@ xsd:time rdf:type rdfs:Datatype .
        <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
        <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:56:21Z"^^xsd:dateTime ;
        rdfs:comment "Opening time" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#startDate
+:startDate rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Interval ;
+           rdfs:range xsd:dateTime ;
+           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+           <http://purl.org/dc/elements/1.1/date> "2021-06-03T13:06:37Z"^^xsd:dateTime ;
+           rdfs:comment "Start datetime for an interval" .
 
 
 #################################################################
