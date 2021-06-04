@@ -260,7 +260,7 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasCurrency
 :hasCurrency rdf:type owl:ObjectProperty ;
-             rdfs:domain :Price ;
+             rdfs:domain :PriceTag ;
              rdfs:range :Currency ;
              <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
              <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:01:02Z"^^xsd:dateTime ;
@@ -301,7 +301,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasPrice
 :hasPrice rdf:type owl:ObjectProperty ;
           rdfs:domain :Fee ;
-          rdfs:range :Price ;
+          rdfs:range :PriceTag ;
           <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
           <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:03:27Z"^^xsd:dateTime ;
           rdfs:comment "A fee consists of a price" .
@@ -468,7 +468,7 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#currencyValue
 :currencyValue rdf:type owl:DatatypeProperty ;
-               rdfs:domain :Price ;
+               rdfs:domain :PriceTag ;
                rdfs:range xsd:float ;
                <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
                <http://purl.org/dc/elements/1.1/date> "2021-05-27T12:00:24Z"^^xsd:dateTime ;
@@ -480,12 +480,14 @@ xsd:time rdf:type rdfs:Datatype .
              rdfs:domain [ rdf:type owl:Class ;
                            owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
                                          <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
-                                         <http://culturalis.org/ocsa/1.0#Site>
+                                         <http://culturalis.org/cult/0.1#Site>
                                          :AccessCondition
                                          :AdmissionType
+                                         :CustomerType
                                          :Fee
                                          :Role
                                          :Service
+                                         :TemporalDuration
                                          :TemporaryClosureType
                                          :Ticket
                                        )
@@ -574,8 +576,9 @@ xsd:time rdf:type rdfs:Datatype .
       rdfs:domain [ rdf:type owl:Class ;
                     owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
                                   <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
-                                  <http://culturalis.org/ocsa/1.0#Site>
+                                  <http://culturalis.org/cult/0.1#Site>
                                   :AdmissionType
+                                  :Currency
                                   :Equipment
                                   :Event
                                   :Operator
@@ -600,6 +603,14 @@ xsd:time rdf:type rdfs:Datatype .
        <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
        <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:56:21Z"^^xsd:dateTime ;
        rdfs:comment "Opening time" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#price
+:price rdf:type owl:DatatypeProperty ;
+       rdfs:domain :PriceTag ;
+       rdfs:range xsd:float ;
+       <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+       <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:20:53Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#startDate
@@ -909,11 +920,11 @@ xsd:time rdf:type rdfs:Datatype .
                rdfs:comment "Park and garden" .
 
 
-###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Price
-:Price rdf:type owl:Class ;
-       <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
-       <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:53:20Z"^^xsd:dateTime ;
-       rdfs:comment "This class denotes a price"@en .
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#PriceTag
+:PriceTag rdf:type owl:Class ;
+          <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:53:20Z"^^xsd:dateTime ;
+          rdfs:comment "This class denotes a price"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Project
@@ -1048,12 +1059,79 @@ xsd:time rdf:type rdfs:Datatype .
                               <http://purl.org/dc/elements/1.1/date> "2021-06-03T15:59:09Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#BigliettoMostraMiniature
+:BigliettoMostraMiniature rdf:type owl:NamedIndividual ,
+                                   :Ticket ;
+                          :canAccess <https://www.w3.org/TR/owl-time/#Mostra_Miniature> ;
+                          :description "Biglietto per Mostra miniature"^^xsd:string ;
+                          :name "BigliettoMostraMiniature"^^xsd:string ;
+                          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                          <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:15:04Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Contatti_di_Biblioteca_Comunale_di_Imola
 :Contatti_di_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
                                                    :ContactPoint ;
                                           :available :Orari_di_apertura_di_Biblioteca_Comunale_di_Imola_sabato ;
                                           <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                           <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:54:34Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Duration_2hours
+:Duration_2hours rdf:type owl:NamedIndividual ,
+                          :TemporalDuration ;
+                 <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                 <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:31:40Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Euro
+:Euro rdf:type owl:NamedIndividual ,
+               :Currency ;
+      :name "EUR"^^xsd:string ;
+      <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+      <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:27:41Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Fee_0101
+:Fee_0101 rdf:type owl:NamedIndividual ,
+                   :Fee ;
+          :hasCustomerType :Over65 ;
+          :hasPrice :PrezzoBigliettoMostraMiniatureOver65_0101 ;
+          :hasValidity :Validity_0101 ;
+          :includes :BigliettoMostraMiniature ;
+          :description "Fee for over65"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:08:04Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Fee_0103
+:Fee_0103 rdf:type owl:NamedIndividual ,
+                   :Fee ;
+          :hasCustomerType :Over65 ;
+          :hasPrice :PrezzoBigliettoMostraMiniatureOver65_0103 ;
+          :hasValidity :Validity_0103 ;
+          :includes :BigliettoMostraMiniature ;
+          :description "Fee for over65"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:08:12Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Interval_0101
+:Interval_0101 rdf:type owl:NamedIndividual ,
+                        :Interval ;
+               :endDate "2021-01-01T00:00:00Z"^^xsd:dateTime ;
+               :startDate "2020-01-01T00:00:00Z"^^xsd:dateTime ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:33:18Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Interval_0103
+:Interval_0103 rdf:type owl:NamedIndividual ,
+                        :Interval ;
+               :endDate "2022-01-01T00:00:00Z"^^xsd:dateTime ;
+               :startDate "2021-01-01T00:00:00Z"^^xsd:dateTime ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:33:26Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Orari_di_apertura_di_Biblioteca_Comunale_di_Imola_sabato
@@ -1066,6 +1144,14 @@ xsd:time rdf:type rdfs:Datatype .
                                                           <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:59:06Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Over65
+:Over65 rdf:type owl:NamedIndividual ,
+                 :CustomerType ;
+        :description "Customer type for over 65"^^xsd:string ;
+        <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+        <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:11:01Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Patrimonio_di_Biblioteca_Comunale_di_Imola
 :Patrimonio_di_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
                                                      <http://culturalis.org/cult/0.1#Collections> ;
@@ -1073,6 +1159,48 @@ xsd:time rdf:type rdfs:Datatype .
                                             :name "Patrimonio di Biblioteca Comunale di Imola"^^xsd:string ;
                                             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                             <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:28:04Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Prenotazione_telefonica
+:Prenotazione_telefonica rdf:type owl:NamedIndividual ,
+                                  :TypeOfBooking ;
+                         :description "Prenotazione telefonica"^^xsd:string ;
+                         <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                         <http://purl.org/dc/elements/1.1/date> "2021-06-04T11:50:20Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#PrezzoBigliettoMostraMiniatureOver65_0101
+:PrezzoBigliettoMostraMiniatureOver65_0101 rdf:type owl:NamedIndividual ,
+                                                    :PriceTag ;
+                                           :hasCurrency :Euro ;
+                                           :price "5.0"^^xsd:float ;
+                                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                           <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:21:33Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#PrezzoBigliettoMostraMiniatureOver65_0103
+:PrezzoBigliettoMostraMiniatureOver65_0103 rdf:type owl:NamedIndividual ,
+                                                    :PriceTag ;
+                                           :hasCurrency :Euro ;
+                                           :price "6.0"^^xsd:float ;
+                                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                           <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:40:17Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity_0101
+:Validity_0101 rdf:type owl:NamedIndividual ,
+                        :Validity ;
+               :hasDuration :Interval_0101 ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:08:18Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity_0103
+:Validity_0103 rdf:type owl:NamedIndividual ,
+                        :Validity ;
+               :hasDuration :Interval_0103 ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:08:24Z"^^xsd:dateTime .
 
 
 ###  http://www.w3.org/2006/time#Saturday
