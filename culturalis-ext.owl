@@ -1061,7 +1061,6 @@ xsd:time rdf:type rdfs:Datatype .
 :BigliettoMostraMiniature rdf:type owl:NamedIndividual ,
                                    :Ticket ;
                           :canAccess <https://www.w3.org/TR/owl-time/#Mostra_Miniature> ;
-                          :hasDuration :Duration_2hours ;
                           :description "Biglietto per Mostra miniature"^^xsd:string ;
                           :name "BigliettoMostraMiniature"^^xsd:string ;
                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
