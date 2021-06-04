@@ -46,7 +46,7 @@ WHERE {
 	ext:available ?spec .
 ?spec a ext:OpeningHoursSpecification;
 	ext:opens ?time.
-FILTER ( xsd:time(?time) > "08:00:00"^^xsd:time )
+FILTER ( ?time > "08:00:00"^^xsd:time )
 }
 
 # count of activies hosted for each site
@@ -54,11 +54,11 @@ FILTER ( xsd:time(?time) > "08:00:00"^^xsd:time )
 SELECT ?site (COUNT(?activity) as ?activityCount)
 WHERE {
 ?activity rdf:type cult:Activity .
-?site cult:hosts ?activity .
+?site ext:hosts ?activity .
 }
 GROUP BY ?site
 
-# sites that contains collections with "Fondo" in their name
+# sites that contains collections with "Casa Piani" in their name
 
 SELECT ?site
 WHERE {
@@ -66,7 +66,7 @@ WHERE {
 	ext:name ?name .
 ?site a cult:Site;
 	ext:isSiteOf ?collection .
-filter contains(?name,"Fondo")
+FILTER( regex(str(?name), "Casa Piani" ))
 }
 
 # select CIS and related services (blank field if a CIS has no services)

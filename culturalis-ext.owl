@@ -1031,6 +1031,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Archivio_Casa_Piani
 :Archivio_Casa_Piani rdf:type owl:NamedIndividual ,
                               <http://culturalis.org/cult/0.1#Collections> ;
+                     <http://culturalis.org/cult/0.1#situated> <https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola> ;
                      :name "Archivio Casa Piani"^^xsd:string ;
                      <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                      <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:35:55Z"^^xsd:dateTime .
@@ -1041,6 +1042,7 @@ xsd:time rdf:type rdfs:Datatype .
                                        <http://culturalis.org/cult/0.1#Library> ;
                               <http://culturalis.org/cult/0.1#maintains> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
                               :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
+                              :provides <https://www.w3.org/TR/owl-time/#Bar> ;
                               :name "Biblioteca Comunale di Imola"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/date> "2021-06-03T15:59:09Z"^^xsd:dateTime .
@@ -1078,6 +1080,14 @@ xsd:time rdf:type rdfs:Datatype .
                                                 <http://www.w3.org/2006/time#DayOfWeek> .
 
 
+###  https://www.w3.org/TR/owl-time/#Bar
+<https://www.w3.org/TR/owl-time/#Bar> rdf:type owl:NamedIndividual ,
+                                               :Service ;
+                                      :name "Bar di Biblioteca Comunale di Imola"^^xsd:string ;
+                                      <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                      <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:45:56Z"^^xsd:dateTime .
+
+
 ###  https://www.w3.org/TR/owl-time/#Mostra_Miniature
 <https://www.w3.org/TR/owl-time/#Mostra_Miniature> rdf:type owl:NamedIndividual ,
                                                             :Event ;
@@ -1088,8 +1098,10 @@ xsd:time rdf:type rdfs:Datatype .
 ###  https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola
 <https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola> rdf:type owl:NamedIndividual ,
                                                                                 <http://culturalis.org/cult/0.1#Site> ;
+                                                                       <http://culturalis.org/cult/0.1#situated> :Archivio_Casa_Piani ;
                                                                        :hosts <https://www.w3.org/TR/owl-time/#Mostra_Miniature> ;
-                                                                       :isSiteOf :Biblioteca_Comunale_di_Imola ;
+                                                                       :isSiteOf :Archivio_Casa_Piani ,
+                                                                                 :Biblioteca_Comunale_di_Imola ;
                                                                        <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                                                        <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:15:31Z"^^xsd:dateTime .
 
