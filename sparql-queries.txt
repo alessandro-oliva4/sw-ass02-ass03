@@ -101,7 +101,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX cult: <http://culturalis.org/cult/0.1#>
 PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
-SELECT ?event
+SELECT DISTINCT ?event
 WHERE {
 	?cis a cult:CulturalInstitutionOrSite ;
 		ext:name ?cisName .
@@ -109,7 +109,6 @@ WHERE {
 		ext:hostedBy ?cis .
 	FILTER ( ?cisName='Biblioteca Comunale di Imola'^^xsd:string )
 }
-GROUP BY ?event
 
 # agents that are not CIS
 SELECT ?entity
