@@ -142,7 +142,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX cult: <http://culturalis.org/cult/0.1#>
 PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
-SELECT ?ticket
+SELECT DISTINCT ?ticket
 WHERE {
 	?ticket a ext:Ticket .
 	FILTER NOT EXISTS {
@@ -150,7 +150,6 @@ WHERE {
 		?fee ext:includes ?ticket .
 	}
 }
-GROUP BY ?ticket
 
 ##### tickets' name and description that give access to event "Mostra miniature" or cis "Museo egizio Torino"
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -160,7 +159,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX cult: <http://culturalis.org/cult/0.1#>
 PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
-SELECT ?ticketName ?ticketDescription
+SELECT DISTINCT ?ticketName ?ticketDescription
 WHERE {
 	?ticket a ext:Ticket ;
 		ext:name ?ticketName ;
@@ -177,7 +176,6 @@ WHERE {
 		FILTER ( ?cisName='Museo egizio Torino'^^xsd:string )
 	}
 }
-GROUP BY ?ticketName ?ticketDescription
 
 ##### fee with expired validity at date "2021-04-01"
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -187,7 +185,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX cult: <http://culturalis.org/cult/0.1#>
 PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
-SELECT ?fee ?end
+SELECT DISTINCT ?fee ?end
 WHERE {
 	?fee a ext:Fee ;
 		ext:hasValidity ?validity .
@@ -195,7 +193,6 @@ WHERE {
 	?interval ext:endDate ?end .
 	FILTER ( ?end < '2021-04-01T00:00:00Z'^^xsd:dateTime )
 }
-GROUP BY ?fee ?end
 
 ##### Ask if access condition with description "Prenotazione telefonica" exists
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
