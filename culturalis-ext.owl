@@ -1177,6 +1177,8 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Mostra_Galleria_Arte_Museo_San_Domenico_2021
 :Mostra_Galleria_Arte_Museo_San_Domenico_2021 rdf:type owl:NamedIndividual ,
                                                        :Event ;
+                                              :hostedBy :Museo_San_Domenico ;
+                                              :name "Mostra galleria d'arte San Domenico 2021"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:59:05Z"^^xsd:dateTime .
 
@@ -1293,6 +1295,8 @@ xsd:time rdf:type rdfs:Datatype .
 ###  https://www.w3.org/TR/owl-time/#Mostra_Miniature
 <https://www.w3.org/TR/owl-time/#Mostra_Miniature> rdf:type owl:NamedIndividual ,
                                                             :Event ;
+                                                   :hostedBy :Biblioteca_Comunale_di_Imola ;
+                                                   :name "Mostra miniature"^^xsd:string ;
                                                    <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                                    <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:17:56Z"^^xsd:dateTime .
 
