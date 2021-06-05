@@ -1073,7 +1073,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biglietto_Mostra_Miniature
 :Biglietto_Mostra_Miniature rdf:type owl:NamedIndividual ,
                                      :Ticket ;
-                            :canAccess <https://www.w3.org/TR/owl-time/#Mostra_Miniature> ;
+                            :canAccess <https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM> ;
                             :description "Biglietto per l'accesso alla mostra di miniature"^^xsd:string ;
                             :name "Biglietto mostra miniature"^^xsd:string ;
                             <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
@@ -1098,6 +1098,13 @@ xsd:time rdf:type rdfs:Datatype .
                               :name "Biglietto museo San Domenico"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:56:24Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Conferenza_Esperti_Storia_dei_Libri_Antichi
+:Conferenza_Esperti_Storia_dei_Libri_Antichi rdf:type owl:NamedIndividual ,
+                                                      :Event ;
+                                             <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                             <http://purl.org/dc/elements/1.1/date> "2021-06-05T13:00:39Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Contatti_di_Biblioteca_Comunale_di_Imola
@@ -1183,6 +1190,17 @@ xsd:time rdf:type rdfs:Datatype .
                                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:59:05Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Mostra_Libri_Antichi_BIM
+:Mostra_Libri_Antichi_BIM rdf:type owl:NamedIndividual ,
+                                   :Event ;
+                          :hasSubEvent :Conferenza_Esperti_Storia_dei_Libri_Antichi ,
+                                       :Presentazione_Storia_dei_Libri_Antichi_BIM ;
+                          :hostedBy :Biblioteca_Comunale_di_Imola ;
+                          :name "Mostra libri antichi"^^xsd:string ;
+                          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                          <http://purl.org/dc/elements/1.1/date> "2021-06-05T12:21:30Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Museo_Egizio_Torino
 :Museo_Egizio_Torino rdf:type owl:NamedIndividual ,
                               <http://culturalis.org/cult/0.1#Museum> ;
@@ -1234,6 +1252,13 @@ xsd:time rdf:type rdfs:Datatype .
                          :description "Prenotazione telefonica"^^xsd:string ;
                          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                          <http://purl.org/dc/elements/1.1/date> "2021-06-04T11:50:20Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Presentazione_Storia_dei_Libri_Antichi_BIM
+:Presentazione_Storia_dei_Libri_Antichi_BIM rdf:type owl:NamedIndividual ,
+                                                     :Event ;
+                                            <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                            <http://purl.org/dc/elements/1.1/date> "2021-06-05T13:00:05Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Prezzo_Biglietto_Mostra_Miniature_Over65_0101
@@ -1292,19 +1317,19 @@ xsd:time rdf:type rdfs:Datatype .
                                       <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:45:56Z"^^xsd:dateTime .
 
 
-###  https://www.w3.org/TR/owl-time/#Mostra_Miniature
-<https://www.w3.org/TR/owl-time/#Mostra_Miniature> rdf:type owl:NamedIndividual ,
-                                                            :Event ;
-                                                   :hostedBy :Biblioteca_Comunale_di_Imola ;
-                                                   :name "Mostra miniature"^^xsd:string ;
-                                                   <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                                                   <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:17:56Z"^^xsd:dateTime .
+###  https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM
+<https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM> rdf:type owl:NamedIndividual ,
+                                                                :Event ;
+                                                       :hostedBy :Biblioteca_Comunale_di_Imola ;
+                                                       :name "Mostra miniature"^^xsd:string ;
+                                                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:17:56Z"^^xsd:dateTime .
 
 
 ###  https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola
 <https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola> rdf:type owl:NamedIndividual ,
                                                                                 <http://culturalis.org/cult/0.1#Site> ;
-                                                                       :hosts <https://www.w3.org/TR/owl-time/#Mostra_Miniature> ;
+                                                                       :hosts <https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM> ;
                                                                        :isSiteOf :Archivio_Casa_Piani ,
                                                                                  :Biblioteca_Comunale_di_Imola ;
                                                                        <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;

@@ -93,15 +93,23 @@ WHERE {
 	FILTER ( xsd:dateTime(?startDate) >= '2010-01-01'^^xsd:dateTime )
 }
 
-# events hosted by "museo x"
+##### events hosted by "Biblioteca_Comunale_di_Imola"
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cult: <http://culturalis.org/cult/0.1#>
+PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
+
 SELECT ?event
 WHERE {
-	?cis a cult:CulturalInstitutionOrType ;
+	?cis a cult:CulturalInstitutionOrSite ;
 		ext:name ?cisName .
 	?event a ext:Event ;
 		ext:hostedBy ?cis .
-	FILTER ( ?cisName='museo x'^^ext:name )
+	FILTER ( ?cisName='Biblioteca Comunale di Imola'^^xsd:string )
 }
+GROUP BY ?event
 
 # agents that are not CIS
 SELECT ?entity
@@ -110,16 +118,22 @@ WHERE {
 	?subAgents rdfs:subClassOf* cult:CulturalInstitutionOrSite .
 }
 
-# first 10 events featuring at least a subevent in descending order by number of subevents
-SELECT ?event (count(?property) as ?numSubEvents) where {
-  values ?property {
-    ext:hasSubEvent
-  }
-  ?event ?property ?object 
+##### the event hosting the highest number of subevents
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cult: <http://culturalis.org/cult/0.1#>
+PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
+
+SELECT ?event (count(DISTINCT ?subEvent) as ?numSubEvents)
+WHERE {
+	?event a ext:Event ;
+		ext:hasSubEvent ?subEvent
 }
-GROUP BY ?event 
+GROUP BY ?event
 ORDER BY desc(?numSubEvents)
-LIMIT 10
+LIMIT 1
 
 ##### free tickets'
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
