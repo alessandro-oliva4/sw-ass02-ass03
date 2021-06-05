@@ -121,25 +121,50 @@ GROUP BY ?event
 ORDER BY desc(?numSubEvents)
 LIMIT 10
 
-# free tickets' description
-SELECT ?des
-WHERE {
-   ?fee a ext:Fee .
-   FILTER NOT EXISTS {
-      ?fee ext:includes ?ticket
-   }
-   ?ticket ext:description ?des .
-}
+##### free tickets'
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cult: <http://culturalis.org/cult/0.1#>
+PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
-# tickets that give access to event "ev" or cis "c"
 SELECT ?ticket
 WHERE {
-	{ ?ticket ext:forAccess ?event . }
-	UNION
-	{ ?ticket ext:forAccess ?cis . }
-	FILTER ( ?event='ev'^^ext:name )
-	FILTER ( ?cis='c'^^ext:name )
+	?ticket a ext:Ticket .
+	FILTER NOT EXISTS {
+		?fee a ext:Fee .
+		?fee ext:includes ?ticket .
+	}
 }
+GROUP BY ?ticket
+
+##### tickets' name and description that give access to event "Mostra miniature" or cis "Museo egizio Torino"
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cult: <http://culturalis.org/cult/0.1#>
+PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
+
+SELECT ?ticketName ?ticketDescription
+WHERE {
+	?ticket a ext:Ticket ;
+		ext:name ?ticketName ;
+		ext:description ?ticketDescription .
+	{
+		?ticket ext:canAccess ?event .
+		?event a ext:Event ;
+			ext:name ?eventName .
+		FILTER ( ?eventName='Mostra miniature'^^xsd:string )
+	} UNION {
+		?ticket ext:canAccess ?cis .
+		?cis a cult:CulturalInstitutionOrSite ;
+			ext:name ?cisName .
+		FILTER ( ?cisName='Museo egizio Torino'^^xsd:string )
+	}
+}
+GROUP BY ?ticketName ?ticketDescription
 
 ##### fee with expired validity at date "2021-04-01"
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

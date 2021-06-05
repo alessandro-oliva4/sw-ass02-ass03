@@ -574,13 +574,13 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#name
 :name rdf:type owl:DatatypeProperty ;
       rdfs:domain [ rdf:type owl:Class ;
-                    owl:unionOf ( <http://culturalis.org/cult/0.1#Collections>
+                    owl:unionOf ( <http://culturalis.org/cult/0.1#Activity>
+                                  <http://culturalis.org/cult/0.1#Collections>
                                   <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
                                   <http://culturalis.org/cult/0.1#Site>
                                   :AdmissionType
                                   :Currency
                                   :Equipment
-                                  :Event
                                   :Operator
                                   :Project
                                   :Role
@@ -654,6 +654,7 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://culturalis.org/cult/0.1#Collections
 <http://culturalis.org/cult/0.1#Collections> rdf:type owl:Class ;
+                                             rdfs:subClassOf :CulturalEntity ;
                                              rdfs:comment "Patrimonio culturale, insieme dei beni culturali conservati da o presso un Istituto o luogo della cultura."@it ;
                                              rdfs:label "Collections"@en ,
                                                         "Patrimonio culturale"@it ;
@@ -1059,14 +1060,44 @@ xsd:time rdf:type rdfs:Datatype .
                               <http://purl.org/dc/elements/1.1/date> "2021-06-03T15:59:09Z"^^xsd:dateTime .
 
 
-###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#BigliettoMostraMiniature
-:BigliettoMostraMiniature rdf:type owl:NamedIndividual ,
-                                   :Ticket ;
-                          :canAccess <https://www.w3.org/TR/owl-time/#Mostra_Miniature> ;
-                          :description "Biglietto per Mostra miniature"^^xsd:string ;
-                          :name "BigliettoMostraMiniature"^^xsd:string ;
-                          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
-                          <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:15:04Z"^^xsd:dateTime .
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biglietto_Mostra_Galleria_Arte_Museo_San_Domenico_2021
+:Biglietto_Mostra_Galleria_Arte_Museo_San_Domenico_2021 rdf:type owl:NamedIndividual ,
+                                                                 :Ticket ;
+                                                        :canAccess :Mostra_Galleria_Arte_Museo_San_Domenico_2021 ;
+                                                        :description "Biglietto per l'accesso alla mostra d'arte 2021 del museo Dan Domenico"^^xsd:string ;
+                                                        :name "Biglietto mostra d'arte 2021 museo Dan Domenico"^^xsd:string ;
+                                                        <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                                        <http://purl.org/dc/elements/1.1/date> "2021-06-05T09:01:17Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biglietto_Mostra_Miniature
+:Biglietto_Mostra_Miniature rdf:type owl:NamedIndividual ,
+                                     :Ticket ;
+                            :canAccess <https://www.w3.org/TR/owl-time/#Mostra_Miniature> ;
+                            :description "Biglietto per l'accesso alla mostra di miniature"^^xsd:string ;
+                            :name "Biglietto mostra miniature"^^xsd:string ;
+                            <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                            <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:15:04Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biglietto_Museo_Egizio_Torino
+:Biglietto_Museo_Egizio_Torino rdf:type owl:NamedIndividual ,
+                                        :Ticket ;
+                               :canAccess :Museo_Egizio_Torino ;
+                               :description "Biglietto per l'accesso al museo egizio di Torino"^^xsd:string ;
+                               :name "Biglietto museo egizio Torino"^^xsd:string ;
+                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:39:40Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biglietto_Museo_San_Domenico
+:Biglietto_Museo_San_Domenico rdf:type owl:NamedIndividual ,
+                                       :Ticket ;
+                              :canAccess :Museo_San_Domenico ;
+                              :description "Biglietto per l'accesso al museo San Domenico"^^xsd:string ;
+                              :name "Biglietto museo San Domenico"^^xsd:string ;
+                              <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                              <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:56:24Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Contatti_di_Biblioteca_Comunale_di_Imola
@@ -1092,13 +1123,22 @@ xsd:time rdf:type rdfs:Datatype .
       <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:27:41Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Fee_0100
+:Fee_0100 rdf:type owl:NamedIndividual ,
+                   :Fee ;
+          :includes :Biglietto_Museo_Egizio_Torino ;
+          :description "Fee for everyone"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+          <http://purl.org/dc/elements/1.1/date> "2021-06-05T09:55:20Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Fee_0101
 :Fee_0101 rdf:type owl:NamedIndividual ,
                    :Fee ;
           :hasCustomerType :Over65 ;
-          :hasPrice :PrezzoBigliettoMostraMiniatureOver65_0101 ;
+          :hasPrice :Prezzo_Biglietto_Mostra_Miniature_Over65_0101 ;
           :hasValidity :Validity_0101 ;
-          :includes :BigliettoMostraMiniature ;
+          :includes :Biglietto_Mostra_Miniature ;
           :description "Fee for over65"^^xsd:string ;
           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
           <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:08:04Z"^^xsd:dateTime .
@@ -1108,9 +1148,9 @@ xsd:time rdf:type rdfs:Datatype .
 :Fee_0103 rdf:type owl:NamedIndividual ,
                    :Fee ;
           :hasCustomerType :Over65 ;
-          :hasPrice :PrezzoBigliettoMostraMiniatureOver65_0103 ;
+          :hasPrice :Prezzo_Biglietto_Mostra_Miniature_Over65_0103 ;
           :hasValidity :Validity_0103 ;
-          :includes :BigliettoMostraMiniature ;
+          :includes :Biglietto_Mostra_Miniature ;
           :description "Fee for over65"^^xsd:string ;
           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
           <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:08:12Z"^^xsd:dateTime .
@@ -1132,6 +1172,31 @@ xsd:time rdf:type rdfs:Datatype .
                :startDate "2021-01-01T00:00:00Z"^^xsd:dateTime ;
                <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:33:26Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Mostra_Galleria_Arte_Museo_San_Domenico_2021
+:Mostra_Galleria_Arte_Museo_San_Domenico_2021 rdf:type owl:NamedIndividual ,
+                                                       :Event ;
+                                              <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                              <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:59:05Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Museo_Egizio_Torino
+:Museo_Egizio_Torino rdf:type owl:NamedIndividual ,
+                              <http://culturalis.org/cult/0.1#Museum> ;
+                     :description "Il Museo Egizio di Torino è il più antico museo, a livello mondiale, interamente dedicato alla civiltà nilotica ed è considerato, per valore e quantità dei reperti, il più importante al mondo dopo quello del Cairo."^^xsd:string ;
+                     :name "Museo egizio Torino"^^xsd:string ;
+                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                     <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:34:28Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Museo_San_Domenico
+:Museo_San_Domenico rdf:type owl:NamedIndividual ,
+                             <http://schema.org/Museum> ;
+                    :description "Il Museo San Domenico è uno degli edifici più significativi del centro storico di Imola. Ospita le Collezioni d'Arte della Città e il \"Museo Scarabelli\"."^^xsd:string ;
+                    :name "Museo di San Domenico"^^xsd:string ;
+                    <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                    <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:54:03Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Orari_di_apertura_di_Biblioteca_Comunale_di_Imola_sabato
@@ -1169,22 +1234,31 @@ xsd:time rdf:type rdfs:Datatype .
                          <http://purl.org/dc/elements/1.1/date> "2021-06-04T11:50:20Z"^^xsd:dateTime .
 
 
-###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#PrezzoBigliettoMostraMiniatureOver65_0101
-:PrezzoBigliettoMostraMiniatureOver65_0101 rdf:type owl:NamedIndividual ,
-                                                    :PriceTag ;
-                                           :hasCurrency :Euro ;
-                                           :price "5.0"^^xsd:float ;
-                                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
-                                           <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:21:33Z"^^xsd:dateTime .
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Prezzo_Biglietto_Mostra_Miniature_Over65_0101
+:Prezzo_Biglietto_Mostra_Miniature_Over65_0101 rdf:type owl:NamedIndividual ,
+                                                        :PriceTag ;
+                                               :hasCurrency :Euro ;
+                                               :price "5.0"^^xsd:float ;
+                                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                               <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:21:33Z"^^xsd:dateTime .
 
 
-###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#PrezzoBigliettoMostraMiniatureOver65_0103
-:PrezzoBigliettoMostraMiniatureOver65_0103 rdf:type owl:NamedIndividual ,
-                                                    :PriceTag ;
-                                           :hasCurrency :Euro ;
-                                           :price "6.0"^^xsd:float ;
-                                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
-                                           <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:40:17Z"^^xsd:dateTime .
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Prezzo_Biglietto_Mostra_Miniature_Over65_0103
+:Prezzo_Biglietto_Mostra_Miniature_Over65_0103 rdf:type owl:NamedIndividual ,
+                                                        :PriceTag ;
+                                               :hasCurrency :Euro ;
+                                               :price "6.0"^^xsd:float ;
+                                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                               <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:40:17Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Prezzo_Biglietto_Museo_Egizio_0100
+:Prezzo_Biglietto_Museo_Egizio_0100 rdf:type owl:NamedIndividual ,
+                                             :PriceTag ;
+                                    :hasCurrency :Euro ;
+                                    :price "10.0"^^xsd:float ;
+                                    <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                    <http://purl.org/dc/elements/1.1/date> "2021-06-05T09:57:13Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity_0101
