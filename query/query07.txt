@@ -1,4 +1,4 @@
-# sites that contains collections with "Casa Piani" in their name
+# sites that contain collections with "Casa Piani" in their name
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
