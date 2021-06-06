@@ -1054,7 +1054,7 @@ xsd:time rdf:type rdfs:Datatype .
                                        <http://culturalis.org/cult/0.1#Library> ;
                               <http://culturalis.org/cult/0.1#maintains> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
                               :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
-                              :provides <https://www.w3.org/TR/owl-time/#Bar> ;
+                              :provides <https://www.w3.org/TR/owl-time/#Bar_Biblioteca_Comunale_di_Imola> ;
                               :name "Biblioteca Comunale di Imola"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/date> "2021-06-03T15:59:09Z"^^xsd:dateTime .
@@ -1113,6 +1113,24 @@ xsd:time rdf:type rdfs:Datatype .
                                           :available :Orari_di_apertura_di_Biblioteca_Comunale_di_Imola_sabato ;
                                           <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                           <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:54:34Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Curatore_Mostre
+:Curatore_Mostre rdf:type owl:NamedIndividual ,
+                          :Role ;
+                 :description "Ruolo di curatore di mostre"^^xsd:string ;
+                 :name "Curatore Mostre"^^xsd:string ;
+                 <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                 <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:19:19Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Direttore
+:Direttore rdf:type owl:NamedIndividual ,
+                    :Role ;
+           :description "Ruolo di direttore"^^xsd:string ;
+           :name "Direttore"^^xsd:string ;
+           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+           <http://purl.org/dc/elements/1.1/date> "2021-06-06T09:52:36Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Duration_2hours
@@ -1181,6 +1199,41 @@ xsd:time rdf:type rdfs:Datatype .
                <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:33:26Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Interval_0800
+:Interval_0800 rdf:type owl:NamedIndividual ,
+                        :Interval ;
+               :endDate "2011-12-31T00:00:00Z"^^xsd:dateTime ;
+               :startDate "2010-01-01T00:00:00Z"^^xsd:dateTime ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:45:21Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Interval_0801
+:Interval_0801 rdf:type owl:NamedIndividual ,
+                        :Interval ;
+               :endDate "2013-12-31T00:00:00Z"^^xsd:dateTime ;
+               :startDate "2012-01-01T00:00:00Z"^^xsd:dateTime ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:45:24Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Interval_0802
+:Interval_0802 rdf:type owl:NamedIndividual ,
+                        :Interval ;
+               :endDate "2016-12-31T00:00:00Z"^^xsd:dateTime ;
+               :startDate "2014-01-01T00:00:00Z"^^xsd:dateTime ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:45:27Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Interval_0803
+:Interval_0803 rdf:type owl:NamedIndividual ,
+                        :Interval ;
+               :startDate "2017-01-01T00:00:00Z"^^xsd:dateTime ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:45:30Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Mostra_Galleria_Arte_Museo_San_Domenico_2021
 :Mostra_Galleria_Arte_Museo_San_Domenico_2021 rdf:type owl:NamedIndividual ,
                                                        :Event ;
@@ -1217,6 +1270,43 @@ xsd:time rdf:type rdfs:Datatype .
                     :name "Museo di San Domenico"^^xsd:string ;
                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                     <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:54:03Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0300
+:Operator_0300 rdf:type owl:NamedIndividual ,
+                        :Individual ;
+               <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Museo_Egizio_Torino_0500 ,
+                                                        :RoleInTime_Museo_Egizio_Torino_0502 ;
+               :name "Evelina Christillin"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T10:02:52Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0301
+:Operator_0301 rdf:type owl:NamedIndividual ,
+                        :Individual ;
+               <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Museo_Egizio_Torino_0501 ;
+               :name "Samanta Isaia"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T10:02:58Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0302
+:Operator_0302 rdf:type owl:NamedIndividual ,
+                        :Individual ;
+               <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Museo_Egizio_Torino_0503 ;
+               :name "Christian Greco"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T10:03:07Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0700
+:Operator_0700 rdf:type owl:NamedIndividual ,
+                        <http://culturalis.org/cult/0.1#Organization> ;
+               <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Biblioteca_Comunale_di_Imola_0900 ;
+               :description "Comitato speciale beni culturali 2021"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-06T10:03:12Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Orari_di_apertura_di_Biblioteca_Comunale_di_Imola_sabato
@@ -1288,6 +1378,55 @@ xsd:time rdf:type rdfs:Datatype .
                                     <http://purl.org/dc/elements/1.1/date> "2021-06-05T09:57:13Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RoleInTime_Biblioteca_Comunale_di_Imola_0900
+:RoleInTime_Biblioteca_Comunale_di_Imola_0900 rdf:type owl:NamedIndividual ,
+                                                       <http://purl.org/spar/pro/RoleInTime> ;
+                                              <http://culturalis.org/cult/0.1#regardsTo> :Biblioteca_Comunale_di_Imola ;
+                                              :withRole :Curatore_Mostre ;
+                                              <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                              <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:17:42Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RoleInTime_Museo_Egizio_Torino_0500
+:RoleInTime_Museo_Egizio_Torino_0500 rdf:type owl:NamedIndividual ,
+                                              <http://purl.org/spar/pro/RoleInTime> ;
+                                     <http://culturalis.org/cult/0.1#regardsTo> :Museo_Egizio_Torino ;
+                                     :timeInterval :Interval_0800 ;
+                                     :withRole :Direttore ;
+                                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                     <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:16:22Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RoleInTime_Museo_Egizio_Torino_0501
+:RoleInTime_Museo_Egizio_Torino_0501 rdf:type owl:NamedIndividual ,
+                                              <http://purl.org/spar/pro/RoleInTime> ;
+                                     <http://culturalis.org/cult/0.1#regardsTo> :Museo_Egizio_Torino ;
+                                     :timeInterval :Interval_0801 ;
+                                     :withRole :Direttore ;
+                                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                     <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:17:23Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RoleInTime_Museo_Egizio_Torino_0502
+:RoleInTime_Museo_Egizio_Torino_0502 rdf:type owl:NamedIndividual ,
+                                              <http://purl.org/spar/pro/RoleInTime> ;
+                                     <http://culturalis.org/cult/0.1#regardsTo> :Museo_Egizio_Torino ;
+                                     :timeInterval :Interval_0802 ;
+                                     :withRole :Direttore ;
+                                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                     <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:17:30Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RoleInTime_Museo_Egizio_Torino_0503
+:RoleInTime_Museo_Egizio_Torino_0503 rdf:type owl:NamedIndividual ,
+                                              <http://purl.org/spar/pro/RoleInTime> ;
+                                     <http://culturalis.org/cult/0.1#regardsTo> :Museo_Egizio_Torino ;
+                                     :timeInterval :Interval_0803 ;
+                                     :withRole :Direttore ;
+                                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                     <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:17:35Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity_0101
 :Validity_0101 rdf:type owl:NamedIndividual ,
                         :Validity ;
@@ -1309,12 +1448,12 @@ xsd:time rdf:type rdfs:Datatype .
                                                 <http://www.w3.org/2006/time#DayOfWeek> .
 
 
-###  https://www.w3.org/TR/owl-time/#Bar
-<https://www.w3.org/TR/owl-time/#Bar> rdf:type owl:NamedIndividual ,
-                                               :Service ;
-                                      :name "Bar di Biblioteca Comunale di Imola"^^xsd:string ;
-                                      <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                                      <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:45:56Z"^^xsd:dateTime .
+###  https://www.w3.org/TR/owl-time/#Bar_Biblioteca_Comunale_di_Imola
+<https://www.w3.org/TR/owl-time/#Bar_Biblioteca_Comunale_di_Imola> rdf:type owl:NamedIndividual ,
+                                                                            :Service ;
+                                                                   :name "Bar di Biblioteca Comunale di Imola"^^xsd:string ;
+                                                                   <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                                                   <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:45:56Z"^^xsd:dateTime .
 
 
 ###  https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM

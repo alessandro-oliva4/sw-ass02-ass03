@@ -1,0 +1,25 @@
+# tickets' name and description that give access to event "Mostra miniature" or cis "Museo egizio Torino"
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cult: <http://culturalis.org/cult/0.1#>
+PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
+
+SELECT DISTINCT ?ticketName ?ticketDescription
+WHERE {
+	?ticket a ext:Ticket ;
+		ext:name ?ticketName ;
+		ext:description ?ticketDescription ;
+		ext:canAccess ?o .
+	{
+		?o a ext:Event ;
+			ext:name ?eventName .
+		FILTER (?eventName='Mostra miniature'^^xsd:string)
+	} UNION {
+		?o a cult:CulturalInstitutionOrSite ;
+			ext:name ?cisName .
+		FILTER (?cisName='Museo egizio Torino'^^xsd:string)
+	}
+}

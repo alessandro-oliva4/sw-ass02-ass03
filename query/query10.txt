@@ -1,0 +1,17 @@
+# events hosted by "Biblioteca_Comunale_di_Imola"
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cult: <http://culturalis.org/cult/0.1#>
+PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
+
+SELECT DISTINCT ?event
+WHERE {
+	?cis a cult:CulturalInstitutionOrSite ;
+		ext:name ?cisName .
+	?event a ext:Event ;
+		ext:hostedBy ?cis .
+	FILTER (?cisName='Biblioteca Comunale di Imola'^^xsd:string)
+}
