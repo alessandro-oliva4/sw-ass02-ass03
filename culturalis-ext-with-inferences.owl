@@ -1,12 +1,12 @@
-@prefix : <http://www.semanticweb.org/alessandro/ontologies/2021/5/untitled-ontology-36#> .
+@prefix : <http://www.semanticweb.org/alessandro/ontologies/2021/5/untitled-ontology-38#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/alessandro/ontologies/2021/5/untitled-ontology-36> .
+@base <http://www.semanticweb.org/alessandro/ontologies/2021/5/untitled-ontology-38> .
 
-<http://www.semanticweb.org/alessandro/ontologies/2021/5/untitled-ontology-36> rdf:type owl:Ontology ;
+<http://www.semanticweb.org/alessandro/ontologies/2021/5/untitled-ontology-38> rdf:type owl:Ontology ;
                                                                                 rdfs:comment "This ontology extends Culturalis modelling data about cultural institutes or cultural sites."@en .
 
 #################################################################
@@ -125,7 +125,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://culturalis.org/cult/0.1#involves
 <http://culturalis.org/cult/0.1#involves> rdf:type owl:ObjectProperty ;
                                           rdfs:domain <http://culturalis.org/cult/0.1#Activity> ;
-                                          rdfs:range <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity> ;
+                                          rdfs:range owl:Thing ;
                                           rdfs:label "Coinvolge"@it ,
                                                      "Involves"@en ;
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -211,6 +211,30 @@ xsd:time rdf:type rdfs:Datatype .
                                                                               <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
                                                                               <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:46:19Z"^^xsd:dateTime ;
                                                                               rdfs:comment "A ticket grants access to an event or to a cultural institution or site" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#comprises
+<http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#comprises> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:domain <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity> ;
+                                                                              rdfs:range <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity> ;
+                                                                              <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                                                              <http://purl.org/dc/elements/1.1/date> "2021-06-07T09:11:19Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#concerns
+<http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#concerns> rdf:type owl:ObjectProperty ;
+                                                                             rdfs:domain <http://culturalis.org/cult/0.1#Catalogue> ;
+                                                                             rdfs:range <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity> ;
+                                                                             <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                                                             <http://purl.org/dc/elements/1.1/date> "2021-06-07T09:16:17Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#features
+<http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#features> rdf:type owl:ObjectProperty ;
+                                                                             rdfs:domain <http://culturalis.org/cult/0.1#Activity> ;
+                                                                             rdfs:range <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity> ;
+                                                                             <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                                                             <http://purl.org/dc/elements/1.1/date> "2021-06-07T09:13:53Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasAccessCondition
@@ -1406,7 +1430,7 @@ xsd:time rdf:type rdfs:Datatype .
 <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Patrimonio_di_Biblioteca_Comunale_di_Imola> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://culturalis.org/cult/0.1#Collections> ,
                                                                                                                         <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity> ;
-                                                                                                               <http://culturalis.org/cult/0.1#include> <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Archivio_Casa_Piani> ;
+                                                                                                               <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#comprises> <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Archivio_Casa_Piani> ;
                                                                                                                <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#name> "Patrimonio di Biblioteca Comunale di Imola"^^xsd:string ;
                                                                                                                <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                                                                                                <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:28:04Z"^^xsd:dateTime .
