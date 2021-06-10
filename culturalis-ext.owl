@@ -21,6 +21,10 @@
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.w3.org/2003/06/sw-vocab-status/ns#term_status
 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> rdf:type owl:AnnotationProperty .
 
@@ -46,8 +50,8 @@ xsd:time rdf:type rdfs:Datatype .
                                        rdfs:domain <http://www.w3.org/ns/org#Organization> ;
                                        rdfs:range <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
                                        rdfs:comment "Proprietà che associa la classe org:Organization con il ruolo che ricopre nei confronti di un istituto/luogo della cultura (ente preposto alla tutelaâ¦)"@it ;
-                                       rdfs:label "Act as"@en ,
-                                                  "Agisce in qualità di"@it ;
+                                       rdfs:label "Agisce in qualità di"@it ,
+                                                  "actAs"@en ;
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -56,8 +60,8 @@ xsd:time rdf:type rdfs:Datatype .
                                         rdfs:domain <http://culturalis.org/cult/0.1#Catalogue> ;
                                         rdfs:range owl:Thing ;
                                         rdfs:comment "Questa proprietà associa il catalogo con la porzione di patrimonio culturale che descrive."@it ;
-                                        rdfs:label "Covers"@en ,
-                                                   "Descrive"@it ;
+                                        rdfs:label "Descrive"@it ,
+                                                   "covers"@en ;
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -65,8 +69,8 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#extend> rdf:type owl:ObjectProperty ;
                                         rdfs:domain <http://culturalis.org/cult/0.1#Collections> ;
                                         rdfs:range <http://culturalis.org/cult/0.1#Extent> ;
-                                        rdfs:label "Extend"@en ,
-                                                   "Ha consistenza"@it ;
+                                        rdfs:label "Ha consistenza"@it ,
+                                                   "extend"@en ;
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -74,7 +78,7 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#hasBeginning> rdf:type owl:ObjectProperty ;
                                               rdfs:domain <http://culturalis.org/cult/0.1#Name> ;
                                               rdfs:range :Interval ;
-                                              rdfs:label "Is valid from"@en ,
+                                              rdfs:label "IsValidFrom"@en ,
                                                          "Valido a partire da"@it ;
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -89,7 +93,7 @@ xsd:time rdf:type rdfs:Datatype .
                                                          ] ;
                                               rdfs:comment "Questa proprietà consente di associare l'istituto culturale con i cataloghi che ne descrivono il patrimonio o l'istituto stesso."@it ;
                                               rdfs:label "E' descritto in un catalogo"@it ,
-                                                         "Has catalogue"@en ;
+                                                         "hasCatalogue"@en ;
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -97,7 +101,7 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#hasEnd> rdf:type owl:ObjectProperty ;
                                         rdfs:domain <http://culturalis.org/cult/0.1#Name> ;
                                         rdfs:range :Interval ;
-                                        rdfs:label "Is valid to"@en ,
+                                        rdfs:label "IsValidTo"@en ,
                                                    "Valido fino a"@it ;
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -107,8 +111,8 @@ xsd:time rdf:type rdfs:Datatype .
                                          rdfs:domain :Operator ;
                                          rdfs:range <http://culturalis.org/cult/0.1#RoleInTime> ;
                                          rdfs:comment "Proprietà che associa la classe org:Organization con il ruolo che ricopre nei confronti di un istituto/luogo della cultura o di un patrimonio culturale (ente preposto alla tutela, finanziatore, titolare proprietario di un fondo depositato presso un istituto culturale) "@it ;
-                                         rdfs:label "Has Role"@en ,
-                                                    "Ricopre il ruolo di"@it ;
+                                         rdfs:label "Ricopre il ruolo di"@it ,
+                                                    "hasRole"@en ;
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -117,8 +121,8 @@ xsd:time rdf:type rdfs:Datatype .
                                          rdfs:domain <http://culturalis.org/cult/0.1#Collections> ;
                                          rdfs:range owl:Thing ;
                                          rdfs:comment "Proprietà che associa la classe Collections con le singole collezioni che compongono il patrimonio culturale dellâistituto/luogo della cultura"@it ;
-                                         rdfs:label "Include"@en ,
-                                                    "Include"@it ;
+                                         rdfs:label "Include"@it ,
+                                                    "include"@en ;
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -136,8 +140,8 @@ xsd:time rdf:type rdfs:Datatype .
                                            rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
                                            rdfs:range <http://culturalis.org/cult/0.1#Collections> ;
                                            rdfs:comment "Proprietà che associa la classe CulturalInstitutionOrSite con il patrimonio culturale che conserva, possiede o detiene."@it ;
-                                           rdfs:label "Conserva"@en ,
-                                                      "Maintains"@it ;
+                                           rdfs:label "Maintains"@it ,
+                                                      "maintains"@en ;
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -150,7 +154,7 @@ xsd:time rdf:type rdfs:Datatype .
                                                    ] ;
                                        rdfs:range <http://culturalis.org/cult/0.1#Name> ;
                                        rdfs:label "E' denominato"@it ,
-                                                  "Is named"@en ;
+                                                  "named"@en ;
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -159,7 +163,7 @@ xsd:time rdf:type rdfs:Datatype .
                                           rdfs:domain :Operator ;
                                           rdfs:range <http://culturalis.org/cult/0.1#Activity> ;
                                           rdfs:label "Esegue"@it ,
-                                                     "Performs"@en ;
+                                                     "performs"@en ;
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -171,8 +175,8 @@ xsd:time rdf:type rdfs:Datatype .
                                                                       <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
                                                                     )
                                                       ] ;
-                                           rdfs:label "Regards to"@en ,
-                                                      "Riferito a"@it ;
+                                           rdfs:label "Riferito a"@it ,
+                                                      "regardsTo"@en ;
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -187,7 +191,7 @@ xsd:time rdf:type rdfs:Datatype .
                                           rdfs:range <http://culturalis.org/cult/0.1#Site> ;
                                           rdfs:comment "Proprietà che associa le classi CulturalInstitutionOrSite e Collections alle loro sedi."@it ;
                                           rdfs:label "E' situato"@it ,
-                                                     "Situated in/at"@en ;
+                                                     "situated"@en ;
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -689,7 +693,7 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> rdf:type owl:Class ;
                                                            owl:equivalentClass <http://culturalis.org/ocsa/1.0#Agent> ;
                                                            rdfs:subClassOf :CulturalEntity ;
-                                                           rdfs:label "Cultural institution/site"@en ,
+                                                           rdfs:label "CulturalInstitutionOrSite"@en ,
                                                                       "Istituto/luogo della cultura"@it ;
                                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -758,7 +762,7 @@ xsd:time rdf:type rdfs:Datatype .
                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                               owl:onClass :Role
                                                             ] ;
-                                            rdfs:label "Role in time"@en ,
+                                            rdfs:label "RoleInTime"@en ,
                                                        "Ruolo nel tempo"@it ;
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -993,7 +997,7 @@ xsd:time rdf:type rdfs:Datatype .
 :TemporalDuration rdf:type owl:Class ;
                   rdfs:comment "Extensión de tiempo; duración de un intervalo de tiempo independiente de su posición de inicio particular."@es ,
                                "Time extent; duration of a time interval separate from its particular start position"@en ;
-                  rdfs:label "Temporal duration"@en ,
+                  rdfs:label "TemporalDuration"@en ,
                              "duración temporal"@es ;
                   <http://www.w3.org/2004/02/skos/core#definition> "Extensión de tiempo; duración de un intervalo de tiempo independiente de su posición de inicio particular."@es ,
                                                                    "Time extent; duration of a time interval separate from its particular start position"@en .
@@ -1498,5 +1502,241 @@ xsd:time rdf:type rdfs:Datatype .
                                                                        <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                                                        <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:15:31Z"^^xsd:dateTime .
 
+
+#################################################################
+#    Rules
+#################################################################
+
+:c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:c2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:s rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:o rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:r rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:o2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:r2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:e rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:e2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "A subevent must be hosted by the same site of the main event"^^xsd:string ;
+   rdfs:label "S2"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :e
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasSubEvent ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :e ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :e2
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :e2
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hostedBy ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :e ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Site> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :s
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hostedBy ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :e2 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "A collection included in another collection must be situated in its same site"^^xsd:string ;
+   rdfs:label "S4"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Collections> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#include> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c2
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Collections> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c2
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#situated> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Site> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :s
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#situated> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c2 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "An operator and the operator to whom he reports have to work for the same CIS"^^xsd:string ;
+   rdfs:label "S3"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Operator ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :o
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#hasRole> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :o ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.org/spar/pro/RoleInTime> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :r
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#regardsTo> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :r ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :reportsTo ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :o ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :o2
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :Operator ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :o2
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#hasRole> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :o2 ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :r2
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.org/spar/pro/RoleInTime> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :r2
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                 ]
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#regardsTo> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :r2 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "An event's ContactPoint must be the same of the hosting site's one"^^xsd:string ;
+   rdfs:label "S1"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :e
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hostedBy ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :e ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Site> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :s
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasContactPoint ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :s ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :ContactPoint ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasContactPoint ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :e ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
