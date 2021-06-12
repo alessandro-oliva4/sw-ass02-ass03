@@ -1,0 +1,3 @@
+ticketName,ticketDescription
+"Biglietto mostra miniature"^^<http://www.w3.org/2001/XMLSchema#string>,"Biglietto per l'accesso alla mostra di miniature"^^<http://www.w3.org/2001/XMLSchema#string>	
+"Biglietto museo egizio Torino"^^<http://www.w3.org/2001/XMLSchema#string>,"Biglietto per l'accesso al museo egizio di Torino"^^<http://www.w3.org/2001/XMLSchema#string>

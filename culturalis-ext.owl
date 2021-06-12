@@ -1070,10 +1070,18 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Archivio_Casa_Piani
 :Archivio_Casa_Piani rdf:type owl:NamedIndividual ,
                               <http://culturalis.org/cult/0.1#Collections> ;
-                     <http://culturalis.org/cult/0.1#situated> <https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola> ;
+                     <http://culturalis.org/cult/0.1#situated> :Sede_di_Biblioteca_Comunale_di_Imola ;
                      :name "Archivio Casa Piani"^^xsd:string ;
                      <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                      <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:35:55Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Bar_Biblioteca_Comunale_di_Imola
+:Bar_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
+                                           :Service ;
+                                  :name "Bar_Biblioteca_Comunale_di_Imola"^^xsd:string ;
+                                  <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                  <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:45:56Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biblioteca_Comunale_di_Imola
@@ -1081,7 +1089,7 @@ xsd:time rdf:type rdfs:Datatype .
                                        <http://culturalis.org/cult/0.1#Library> ;
                               <http://culturalis.org/cult/0.1#maintains> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
                               :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
-                              :provides <https://www.w3.org/TR/owl-time/#Bar_Biblioteca_Comunale_di_Imola> ;
+                              :provides :Bar_Biblioteca_Comunale_di_Imola ;
                               :name "Biblioteca Comunale di Imola"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/date> "2021-06-03T15:59:09Z"^^xsd:dateTime .
@@ -1100,7 +1108,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biglietto_Mostra_Miniature
 :Biglietto_Mostra_Miniature rdf:type owl:NamedIndividual ,
                                      :Ticket ;
-                            :canAccess <https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM> ;
+                            :canAccess :Mostra_Miniature_BIM ;
                             :description "Biglietto per l'accesso alla mostra di miniature"^^xsd:string ;
                             :name "Biglietto mostra miniature"^^xsd:string ;
                             <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
@@ -1281,6 +1289,15 @@ xsd:time rdf:type rdfs:Datatype .
                           <http://purl.org/dc/elements/1.1/date> "2021-06-05T12:21:30Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Mostra_Miniature_BIM
+:Mostra_Miniature_BIM rdf:type owl:NamedIndividual ,
+                               :Event ;
+                      :hostedBy :Biblioteca_Comunale_di_Imola ;
+                      :name "Mostra miniature"^^xsd:string ;
+                      <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                      <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:17:56Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Museo_Egizio_Torino
 :Museo_Egizio_Torino rdf:type owl:NamedIndividual ,
                               <http://culturalis.org/cult/0.1#Museum> ;
@@ -1454,6 +1471,16 @@ xsd:time rdf:type rdfs:Datatype .
                                      <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:17:35Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Sede_di_Biblioteca_Comunale_di_Imola
+:Sede_di_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
+                                               <http://culturalis.org/cult/0.1#Site> ;
+                                      :hosts :Mostra_Miniature_BIM ;
+                                      :isSiteOf :Archivio_Casa_Piani ,
+                                                :Biblioteca_Comunale_di_Imola ;
+                                      <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                      <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:15:31Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity_0101
 :Validity_0101 rdf:type owl:NamedIndividual ,
                         :Validity ;
@@ -1473,33 +1500,6 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.w3.org/2006/time#Saturday
 <http://www.w3.org/2006/time#Saturday> rdf:type owl:NamedIndividual ,
                                                 <http://www.w3.org/2006/time#DayOfWeek> .
-
-
-###  https://www.w3.org/TR/owl-time/#Bar_Biblioteca_Comunale_di_Imola
-<https://www.w3.org/TR/owl-time/#Bar_Biblioteca_Comunale_di_Imola> rdf:type owl:NamedIndividual ,
-                                                                            :Service ;
-                                                                   :name "Bar_Biblioteca_Comunale_di_Imola"^^xsd:string ;
-                                                                   <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                                                                   <http://purl.org/dc/elements/1.1/date> "2021-06-04T14:45:56Z"^^xsd:dateTime .
-
-
-###  https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM
-<https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM> rdf:type owl:NamedIndividual ,
-                                                                :Event ;
-                                                       :hostedBy :Biblioteca_Comunale_di_Imola ;
-                                                       :name "Mostra miniature"^^xsd:string ;
-                                                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                                                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:17:56Z"^^xsd:dateTime .
-
-
-###  https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola
-<https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola> rdf:type owl:NamedIndividual ,
-                                                                                <http://culturalis.org/cult/0.1#Site> ;
-                                                                       :hosts <https://www.w3.org/TR/owl-time/#Mostra_Miniature_BIM> ;
-                                                                       :isSiteOf :Archivio_Casa_Piani ,
-                                                                                 :Biblioteca_Comunale_di_Imola ;
-                                                                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                                                                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:15:31Z"^^xsd:dateTime .
 
 
 #################################################################

@@ -1,0 +1,4 @@
+site,activityCount
+http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biblioteca_Comunale_di_Imola,"4"^^<http://www.w3.org/2001/XMLSchema#integer>	
+http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Museo_San_Domenico,"1"^^<http://www.w3.org/2001/XMLSchema#integer>	
+https://www.w3.org/TR/owl-time/#Sede_di_Biblioteca_Comunale_di_Imola,"1"^^<http://www.w3.org/2001/XMLSchema#integer>
