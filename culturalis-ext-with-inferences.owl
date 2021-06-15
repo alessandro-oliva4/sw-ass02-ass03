@@ -1334,7 +1334,7 @@ xsd:time rdf:type rdfs:Datatype .
 :Mostra_Galleria_Arte_Museo_San_Domenico_2021 rdf:type owl:NamedIndividual ,
                                                        <http://culturalis.org/cult/0.1#Activity> ,
                                                        :Event ;
-                                              :hostedBy <https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> ;
+                                              :hostedBy :Sede_di_Museo_San_Domenico ;
                                               :name "Mostra galleria d'arte San Domenico 2021"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:59:05Z"^^xsd:dateTime .
@@ -1384,7 +1384,7 @@ xsd:time rdf:type rdfs:Datatype .
                              <http://culturalis.org/ocsa/1.0#Agent> ,
                              <http://schema.org/Museum> ,
                              :CulturalEntity ;
-                    <http://culturalis.org/cult/0.1#situated> <https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> ;
+                    <http://culturalis.org/cult/0.1#situated> :Sede_di_Museo_San_Domenico ;
                     :description "Il Museo San Domenico è uno degli edifici più significativi del centro storico di Imola. Ospita le Collezioni d'Arte della Città e il \"Museo Scarabelli\"."^^xsd:string ;
                     :name "Museo di San Domenico"^^xsd:string ;
                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
@@ -1576,6 +1576,17 @@ xsd:time rdf:type rdfs:Datatype .
                                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:15:31Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Sede_di_Museo_San_Domenico
+:Sede_di_Museo_San_Domenico rdf:type owl:NamedIndividual ,
+                                     <http://culturalis.org/cult/0.1#Site> ,
+                                     <http://culturalis.org/ocsa/1.0#Site> ;
+                            :hosts :Mostra_Galleria_Arte_Museo_San_Domenico_2021 ;
+                            :isSiteOf :Museo_San_Domenico ;
+                            :name "Sede di Museo San Domenico"^^xsd:string ;
+                            <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                            <http://purl.org/dc/elements/1.1/date> "2021-06-15T11:48:44Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity_0101
 :Validity_0101 rdf:type owl:NamedIndividual ,
                         :Validity ;
@@ -1595,17 +1606,6 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.w3.org/2006/time#Saturday
 <http://www.w3.org/2006/time#Saturday> rdf:type owl:NamedIndividual ,
                                                 <http://www.w3.org/2006/time#DayOfWeek> .
-
-
-###  https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico
-<https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> rdf:type owl:NamedIndividual ,
-                                                                      <http://culturalis.org/cult/0.1#Site> ,
-                                                                      <http://culturalis.org/ocsa/1.0#Site> ;
-                                                             :hosts :Mostra_Galleria_Arte_Museo_San_Domenico_2021 ;
-                                                             :isSiteOf :Museo_San_Domenico ;
-                                                             :name "Sede di Museo San Domenico"^^xsd:string ;
-                                                             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
-                                                             <http://purl.org/dc/elements/1.1/date> "2021-06-15T11:48:44Z"^^xsd:dateTime .
 
 
 #################################################################
