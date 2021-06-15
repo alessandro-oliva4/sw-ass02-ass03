@@ -9,9 +9,9 @@ PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
 SELECT DISTINCT ?event
 WHERE {
-	?cis a cult:CulturalInstitutionOrSite ;
-		ext:name ?cisName .
+	?site a cult:Site ;
+		ext:name ?siteName .
 	?event a ext:Event ;
-		ext:hostedBy ?cis .
-	FILTER (?cisName='Biblioteca Comunale di Imola'^^xsd:string)
+		ext:hostedBy ?site .
+	FILTER (?siteName='Sede di Biblioteca Comunale di Imola'^^xsd:string)
 }

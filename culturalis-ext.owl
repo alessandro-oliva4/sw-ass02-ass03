@@ -1272,7 +1272,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Mostra_Galleria_Arte_Museo_San_Domenico_2021
 :Mostra_Galleria_Arte_Museo_San_Domenico_2021 rdf:type owl:NamedIndividual ,
                                                        :Event ;
-                                              :hostedBy :Museo_San_Domenico ;
+                                              :hostedBy <https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> ;
                                               :name "Mostra galleria d'arte San Domenico 2021"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:59:05Z"^^xsd:dateTime .
@@ -1283,7 +1283,7 @@ xsd:time rdf:type rdfs:Datatype .
                                    :Event ;
                           :hasSubEvent :Conferenza_Esperti_Storia_dei_Libri_Antichi ,
                                        :Presentazione_Storia_dei_Libri_Antichi_BIM ;
-                          :hostedBy :Biblioteca_Comunale_di_Imola ;
+                          :hostedBy :Sede_di_Biblioteca_Comunale_di_Imola ;
                           :name "Mostra libri antichi"^^xsd:string ;
                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                           <http://purl.org/dc/elements/1.1/date> "2021-06-05T12:21:30Z"^^xsd:dateTime .
@@ -1292,7 +1292,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Mostra_Miniature_BIM
 :Mostra_Miniature_BIM rdf:type owl:NamedIndividual ,
                                :Event ;
-                      :hostedBy :Biblioteca_Comunale_di_Imola ;
+                      :hostedBy :Sede_di_Biblioteca_Comunale_di_Imola ;
                       :name "Mostra miniature"^^xsd:string ;
                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:17:56Z"^^xsd:dateTime .
@@ -1477,6 +1477,7 @@ xsd:time rdf:type rdfs:Datatype .
                                       :hosts :Mostra_Miniature_BIM ;
                                       :isSiteOf :Archivio_Casa_Piani ,
                                                 :Biblioteca_Comunale_di_Imola ;
+                                      :name "Sede di Biblioteca Comunale di Imola"^^xsd:string ;
                                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:15:31Z"^^xsd:dateTime .
 
@@ -1500,6 +1501,15 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.w3.org/2006/time#Saturday
 <http://www.w3.org/2006/time#Saturday> rdf:type owl:NamedIndividual ,
                                                 <http://www.w3.org/2006/time#DayOfWeek> .
+
+
+###  https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico
+<https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> rdf:type owl:NamedIndividual ,
+                                                                      <http://culturalis.org/cult/0.1#Site> ;
+                                                             :isSiteOf :Museo_San_Domenico ;
+                                                             :name "Sede di Museo San Domenico"^^xsd:string ;
+                                                             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2021-06-15T11:48:44Z"^^xsd:dateTime .
 
 
 #################################################################

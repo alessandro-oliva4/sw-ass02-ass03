@@ -1140,18 +1140,12 @@ xsd:time rdf:type rdfs:Datatype .
                                        <http://culturalis.org/cult/0.1#Agent> ,
                                        <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
                                        <http://culturalis.org/cult/0.1#Library> ,
-                                       <http://culturalis.org/cult/0.1#Site> ,
                                        <http://culturalis.org/ocsa/1.0#Agent> ,
-                                       <http://culturalis.org/ocsa/1.0#Site> ,
                                        <http://schema.org/Library> ,
                                        :CulturalEntity ;
                               <http://culturalis.org/cult/0.1#maintains> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
                               <http://culturalis.org/cult/0.1#situated> :Sede_di_Biblioteca_Comunale_di_Imola ;
                               :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
-                              :hosts :Conferenza_Esperti_Storia_dei_Libri_Antichi ,
-                                     :Mostra_Libri_Antichi_BIM ,
-                                     :Mostra_Miniature_BIM ,
-                                     :Presentazione_Storia_dei_Libri_Antichi_BIM ;
                               :provides :Bar_Biblioteca_Comunale_di_Imola ;
                               :name "Biblioteca Comunale di Imola"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
@@ -1204,8 +1198,7 @@ xsd:time rdf:type rdfs:Datatype .
 :Conferenza_Esperti_Storia_dei_Libri_Antichi rdf:type owl:NamedIndividual ,
                                                       <http://culturalis.org/cult/0.1#Activity> ,
                                                       :Event ;
-                                             :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
-                                             :hostedBy :Biblioteca_Comunale_di_Imola ;
+                                             :hostedBy :Sede_di_Biblioteca_Comunale_di_Imola ;
                                              <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                              <http://purl.org/dc/elements/1.1/date> "2021-06-05T13:00:39Z"^^xsd:dateTime .
 
@@ -1341,7 +1334,7 @@ xsd:time rdf:type rdfs:Datatype .
 :Mostra_Galleria_Arte_Museo_San_Domenico_2021 rdf:type owl:NamedIndividual ,
                                                        <http://culturalis.org/cult/0.1#Activity> ,
                                                        :Event ;
-                                              :hostedBy :Museo_San_Domenico ;
+                                              :hostedBy <https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> ;
                                               :name "Mostra galleria d'arte San Domenico 2021"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:59:05Z"^^xsd:dateTime .
@@ -1351,10 +1344,9 @@ xsd:time rdf:type rdfs:Datatype .
 :Mostra_Libri_Antichi_BIM rdf:type owl:NamedIndividual ,
                                    <http://culturalis.org/cult/0.1#Activity> ,
                                    :Event ;
-                          :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
                           :hasSubEvent :Conferenza_Esperti_Storia_dei_Libri_Antichi ,
                                        :Presentazione_Storia_dei_Libri_Antichi_BIM ;
-                          :hostedBy :Biblioteca_Comunale_di_Imola ;
+                          :hostedBy :Sede_di_Biblioteca_Comunale_di_Imola ;
                           :name "Mostra libri antichi"^^xsd:string ;
                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                           <http://purl.org/dc/elements/1.1/date> "2021-06-05T12:21:30Z"^^xsd:dateTime .
@@ -1364,9 +1356,7 @@ xsd:time rdf:type rdfs:Datatype .
 :Mostra_Miniature_BIM rdf:type owl:NamedIndividual ,
                                <http://culturalis.org/cult/0.1#Activity> ,
                                :Event ;
-                      :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
-                      :hostedBy :Biblioteca_Comunale_di_Imola ,
-                                :Sede_di_Biblioteca_Comunale_di_Imola ;
+                      :hostedBy :Sede_di_Biblioteca_Comunale_di_Imola ;
                       :name "Mostra miniature"^^xsd:string ;
                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:17:56Z"^^xsd:dateTime .
@@ -1391,12 +1381,10 @@ xsd:time rdf:type rdfs:Datatype .
                              <http://culturalis.org/cult/0.1#Agent> ,
                              <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
                              <http://culturalis.org/cult/0.1#Museum> ,
-                             <http://culturalis.org/cult/0.1#Site> ,
                              <http://culturalis.org/ocsa/1.0#Agent> ,
-                             <http://culturalis.org/ocsa/1.0#Site> ,
                              <http://schema.org/Museum> ,
                              :CulturalEntity ;
-                    :hosts :Mostra_Galleria_Arte_Museo_San_Domenico_2021 ;
+                    <http://culturalis.org/cult/0.1#situated> <https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> ;
                     :description "Il Museo San Domenico è uno degli edifici più significativi del centro storico di Imola. Ospita le Collezioni d'Arte della Città e il \"Museo Scarabelli\"."^^xsd:string ;
                     :name "Museo di San Domenico"^^xsd:string ;
                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
@@ -1487,8 +1475,7 @@ xsd:time rdf:type rdfs:Datatype .
 :Presentazione_Storia_dei_Libri_Antichi_BIM rdf:type owl:NamedIndividual ,
                                                      <http://culturalis.org/cult/0.1#Activity> ,
                                                      :Event ;
-                                            :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
-                                            :hostedBy :Biblioteca_Comunale_di_Imola ;
+                                            :hostedBy :Sede_di_Biblioteca_Comunale_di_Imola ;
                                             <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                             <http://purl.org/dc/elements/1.1/date> "2021-06-05T13:00:05Z"^^xsd:dateTime .
 
@@ -1578,9 +1565,13 @@ xsd:time rdf:type rdfs:Datatype .
 :Sede_di_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
                                                <http://culturalis.org/cult/0.1#Site> ,
                                                <http://culturalis.org/ocsa/1.0#Site> ;
-                                      :hosts :Mostra_Miniature_BIM ;
+                                      :hosts :Conferenza_Esperti_Storia_dei_Libri_Antichi ,
+                                             :Mostra_Libri_Antichi_BIM ,
+                                             :Mostra_Miniature_BIM ,
+                                             :Presentazione_Storia_dei_Libri_Antichi_BIM ;
                                       :isSiteOf :Archivio_Casa_Piani ,
                                                 :Biblioteca_Comunale_di_Imola ;
+                                      :name "Sede di Biblioteca Comunale di Imola"^^xsd:string ;
                                       <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                                       <http://purl.org/dc/elements/1.1/date> "2021-06-03T17:15:31Z"^^xsd:dateTime .
 
@@ -1604,6 +1595,17 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.w3.org/2006/time#Saturday
 <http://www.w3.org/2006/time#Saturday> rdf:type owl:NamedIndividual ,
                                                 <http://www.w3.org/2006/time#DayOfWeek> .
+
+
+###  https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico
+<https://www.w3.org/TR/owl-time/#Sede_di_Museo_San_Domenico> rdf:type owl:NamedIndividual ,
+                                                                      <http://culturalis.org/cult/0.1#Site> ,
+                                                                      <http://culturalis.org/ocsa/1.0#Site> ;
+                                                             :hosts :Mostra_Galleria_Arte_Museo_San_Domenico_2021 ;
+                                                             :isSiteOf :Museo_San_Domenico ;
+                                                             :name "Sede di Museo San Domenico"^^xsd:string ;
+                                                             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                                             <http://purl.org/dc/elements/1.1/date> "2021-06-15T11:48:44Z"^^xsd:dateTime .
 
 
 #################################################################
