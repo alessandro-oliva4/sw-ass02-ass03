@@ -7,6 +7,6 @@ PREFIX ext: <http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#>
 
 ASK
 WHERE {
-	ext:Rocca_Sforzesca_di_Imola rdf:type cult:Agent ;
+	?agent rdf:type cult:Agent ;
 		cult:hasRole ?role .
 }
