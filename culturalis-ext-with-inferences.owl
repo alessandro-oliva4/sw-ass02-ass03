@@ -149,7 +149,7 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#named> rdf:type owl:ObjectProperty ;
                                        rdfs:domain [ rdf:type owl:Class ;
                                                      owl:unionOf ( <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite>
-                                                                   <http://culturalis.org/ocsa/1.0#Site>
+                                                                   :Site
                                                                  )
                                                    ] ;
                                        rdfs:range <http://culturalis.org/cult/0.1#Name> ;
@@ -195,6 +195,41 @@ xsd:time rdf:type rdfs:Datatype .
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#applyTo
+:applyTo rdf:type owl:ObjectProperty ;
+         rdfs:domain :RulesAndRegulations ;
+         rdfs:range [ rdf:type owl:Class ;
+                      owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                    :Area
+                                    :Equipment
+                                    :Service
+                                    :Site
+                                  )
+                    ] ;
+         rdfs:comment "Proprietà che associa la classe RulesAndRegulations con le entità a cui sono applicati regolamenti e carte dei servizi."@it ;
+         rdfs:label "Apply to"@en ,
+                    "Si applica a"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#attachedTo
+:attachedTo rdf:type owl:ObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Staff
+                                        :StaffMember
+                                      )
+                        ] ;
+            rdfs:range [ rdf:type owl:Class ;
+                         owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                       :Area
+                                       :Service
+                                       :Site
+                                     )
+                       ] ;
+            rdfs:comment "Proprietà che associa le classi Staff e StaffMember con le entità di cui il personale di occupa."@it ;
+            rdfs:label "Attached to"@en ,
+                       "Si occupa di"@it .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#available
 :available rdf:type owl:ObjectProperty ;
            rdfs:domain :ContactPoint ;
@@ -202,6 +237,15 @@ xsd:time rdf:type rdfs:Datatype .
            <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
            <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:34:55Z"^^xsd:dateTime ;
            rdfs:comment "Property used to associate a contact point with opening hours specification" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#byMeansOf
+:byMeansOf rdf:type owl:ObjectProperty ;
+           rdfs:domain :Service ;
+           rdfs:range :Equipment ;
+           rdfs:comment "Proprietà che associa la classe Service con le attrezzature utilizzate per fornire quel servizio."@it ;
+           rdfs:label "By means of"@en ,
+                      "Per mezzo di"@it .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#canAccess
@@ -244,6 +288,22 @@ xsd:time rdf:type rdfs:Datatype .
           rdfs:comment "an activity may feature a cultural entity" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#givesAdmission
+:givesAdmission rdf:type owl:ObjectProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                            :Agent
+                                            :Area
+                                            :Service
+                                            :Site
+                                          )
+                            ] ;
+                rdfs:range :Admission ;
+                rdfs:comment "Proprietà che associa la classe Admission con le entità di cui specifica le modalità di accesso."@it ;
+                rdfs:label "Gives admission"@en ,
+                           "Ha modalità di accesso"@it .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasAccessCondition
 :hasAccessCondition rdf:type owl:ObjectProperty ;
                     rdfs:domain [ rdf:type owl:Class ;
@@ -259,11 +319,19 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasAddress
 :hasAddress rdf:type owl:ObjectProperty ;
-            rdfs:domain <http://culturalis.org/cult/0.1#Site> ;
+            rdfs:domain <http://culturalis.org/cult/0.1#Site> ,
+                        [ rdf:type owl:Class ;
+                          owl:unionOf ( :Area
+                                        :Site
+                                      )
+                        ] ;
             rdfs:range <http://www.w3.org/2006/vcard/ns#Address> ;
             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
             <http://purl.org/dc/elements/1.1/date> "2021-05-28T11:55:11Z"^^xsd:dateTime ;
-            rdfs:comment "Site address" .
+            rdfs:comment "Proprietà che associa le classi Site e Area con il relativo indirizzo."@it ,
+                         "Site address" ;
+            rdfs:label "Ha indirizzo"@it ,
+                       "Has address"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasAdmissionType
@@ -275,12 +343,28 @@ xsd:time rdf:type rdfs:Datatype .
                   rdfs:comment "Property used to associate the opening hours specification to the admission type" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasConditionOfUse
+:hasConditionOfUse rdf:type owl:ObjectProperty ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Agent
+                                               :Area
+                                               :Equipment
+                                               :Service
+                                               :Site
+                                             )
+                               ] ;
+                   rdfs:range :ConditionOfUse ;
+                   rdfs:comment "Proprietà che associa le classi Service, Area, Site, Agent, Equipment con gli specifici requisiti o condizioni d’uso."@it ;
+                   rdfs:label "Ha condizione o requisito d’uso"@it ,
+                              "Has condition of use"@en .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasContactPoint
 :hasContactPoint rdf:type owl:ObjectProperty ;
                  rdfs:domain [ rdf:type owl:Class ;
-                               owl:unionOf ( <http://culturalis.org/ocsa/1.0#Site>
-                                             :Event
+                               owl:unionOf ( :Event
                                              :Service
+                                             :Site
                                            )
                              ] ;
                  rdfs:range :ContactPoint ;
@@ -338,6 +422,41 @@ xsd:time rdf:type rdfs:Datatype .
           rdfs:comment "A fee consists of a price" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasRulesAndRegulations
+:hasRulesAndRegulations rdf:type owl:ObjectProperty ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                                    :Agent
+                                                  )
+                                    ] ;
+                        rdfs:range :RulesAndRegulations ;
+                        rdfs:comment "Proprietà che associa la classe Agent con la classe RulesAndRegulations."@it ;
+                        rdfs:label "Ha regolamento o carte dei servizi"@it ,
+                                   "Has rules and regulations"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasStaff
+:hasStaff rdf:type owl:ObjectProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                      :Agent
+                                    )
+                      ] ;
+          rdfs:range :Staff ;
+          rdfs:comment "Proprietà che associa la classe Agent con la classe Staff."@it ;
+          rdfs:label "Ha staff collegato"@it ,
+                     "Has staff"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasStaffMember
+:hasStaffMember rdf:type owl:ObjectProperty ;
+                rdfs:domain :Staff ;
+                rdfs:range :StaffMember ;
+                rdfs:comment "Proprietà che associa la classe Staff con le singole persone che operano all’interno dell’Agent."@it ;
+                rdfs:label "Comprende"@it ,
+                           "Has staff member"@en .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasSubEvent
 :hasSubEvent rdf:type owl:ObjectProperty ;
              rdfs:domain :Event ;
@@ -389,6 +508,46 @@ xsd:time rdf:type rdfs:Datatype .
           rdfs:comment "A fee may be included in a ticket" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#includesArea
+:includesArea rdf:type owl:ObjectProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                          :Agent
+                                          :Site
+                                        )
+                          ] ;
+              rdfs:range :Area ;
+              rdfs:comment "Proprietà che associa le classi Agent e Site con la classe Area."@it ;
+              rdfs:label "Include"@it ,
+                         "Includes area"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#isAvailableAt
+:isAvailableAt rdf:type owl:ObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :Equipment
+                                           :Service
+                                         )
+                           ] ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( :Area
+                                          :Site
+                                        )
+                          ] ;
+               rdfs:comment "Proprietà che associa le classi Equipment e Service con le classi Site e Area in cui servizi e attrezzature sono disponibili."@it ;
+               rdfs:label "Disponibile in"@it ,
+                          "Is available at"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#isAvailableFor
+:isAvailableFor rdf:type owl:ObjectProperty ;
+                rdfs:domain :Service ;
+                rdfs:range owl:Thing ;
+                rdfs:comment "Proprietà che associa la classe Service con le entità in relazione alle quali sono disponibili quei servizi."@it ;
+                rdfs:label "Is available for"@en ,
+                           "È disponibile per"@it .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#isInvolvedInProject
 :isInvolvedInProject rdf:type owl:ObjectProperty ;
                      rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
@@ -430,6 +589,24 @@ xsd:time rdf:type rdfs:Datatype .
           rdfs:comment "Property used to associate a site to a CIS" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#linkingTo
+:linkingTo rdf:type owl:ObjectProperty ;
+           rdfs:domain :Contacts ;
+           rdfs:range [ rdf:type owl:Class ;
+                        owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                      :Agent
+                                      :Area
+                                      :Service
+                                      :Site
+                                      :Staff
+                                      :StaffMember
+                                    )
+                      ] ;
+           rdfs:comment "Proprietà che associa la classe Contacts con le entità a cui si riferiscono i contatti stessi."@it ;
+           rdfs:label "Linking to"@en ,
+                      "Mette collegamento con"@it .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#makesAvailable
 :makesAvailable rdf:type owl:ObjectProperty ;
                 rdfs:domain <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
@@ -437,6 +614,72 @@ xsd:time rdf:type rdfs:Datatype .
                 <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                 <http://purl.org/dc/elements/1.1/date> "2021-05-28T12:55:30Z"^^xsd:dateTime ;
                 rdfs:comment "Property that permits to associate the CIS with its own equipment" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#makesAvailableEquipment
+:makesAvailableEquipment rdf:type owl:ObjectProperty ;
+                         rdfs:domain [ rdf:type owl:Class ;
+                                       owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                                     :Agent
+                                                   )
+                                     ] ;
+                         rdfs:range :Equipment ;
+                         rdfs:comment "Proprietà che associa la classe Agent alle attrezzature possedute, messe a disposizione o utilizzate da un ente."@it ;
+                         rdfs:label "Makes available equipment"@en ,
+                                    "Mette a disposizione"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#offersService
+:offersService rdf:type owl:ObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                           :Agent
+                                         )
+                           ] ;
+               rdfs:range :Service ;
+               rdfs:comment "Proprietà che associa la classe Agent ai servizi che offre ai suoi utenti."@it ;
+               rdfs:label "Offers service"@en ,
+                          "Offre servizi"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#partecipatesInEvent
+:partecipatesInEvent rdf:type owl:ObjectProperty ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                                 :Agent
+                                               )
+                                 ] ;
+                     rdfs:range <http://linkedevents.org/ontology/Event> ;
+                     rdfs:comment "Proprietà che associa la classe Agent agli eventi a cui l’Agent prende parte a vario titolo."@it ;
+                     rdfs:label "Partecipa all'evento"@it ,
+                                "Partecipates in event"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#partecipatesInNetwork
+:partecipatesInNetwork rdf:type owl:ObjectProperty ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                                   :Agent
+                                                 )
+                                   ] ;
+                       rdfs:range :Network ;
+                       rdfs:comment "Proprietà che associa la classe Agent alle reti o consorzi in cui l’Agent è coinvolto a vario titolo."@it ;
+                       rdfs:label "Partecipa alla rete"@it ,
+                                  "Partecipates in network"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#partecipatesInProject
+:partecipatesInProject rdf:type owl:ObjectProperty ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                                   :Agent
+                                                   :Network
+                                                 )
+                                   ] ;
+                       rdfs:range <http://xmlns.com/foaf/0.1/Project> ;
+                       rdfs:comment "Proprietà che associa la classe Agent ai progetti in cui l’Agent è coinvolto a vario titolo."@it ;
+                       rdfs:label "Partecipa al progetto"@it ,
+                                  "Partecipates in project"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#provides
@@ -455,6 +698,19 @@ xsd:time rdf:type rdfs:Datatype .
            <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
            <http://purl.org/dc/elements/1.1/date> "2021-05-27T11:25:25Z"^^xsd:dateTime ;
            rdfs:comment "Property used to represent the relationship between an operator and the operator for which he acts on behalf of" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#situated
+:situated rdf:type owl:ObjectProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( <http://culturalis.org/eac-cpf#Entity>
+                                      :Agent
+                                    )
+                      ] ;
+          rdfs:range :Site ;
+          rdfs:comment "Proprietà che associa la classe Agent alle sue sedi."@it ;
+          rdfs:label "E' situato"@it ,
+                     "Situated"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#takesPlaceDuring
@@ -488,6 +744,42 @@ xsd:time rdf:type rdfs:Datatype .
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#accessibility
+:accessibility rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Admission ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Proprietà che descrive l'eliminazione delle barriere architettoniche o altre specifiche condizioni di accessibilità."@it ;
+               rdfs:label "Accessibility"@en ,
+                          "Accessibilità"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#admittedUsers
+:admittedUsers rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Admission ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Proprietà che descrive le categorie di utenti ammessi."@it ;
+               rdfs:label "Admitted users"@en ,
+                          "Utenti ammessi"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#automation
+:automation rdf:type owl:DatatypeProperty ;
+            rdfs:domain :ConditionOfUse ;
+            rdfs:range xsd:boolean ;
+            rdfs:comment "Proprietà che indica la presenza di procedure automatizzate per la fruizione dei servizi o l’utilizzo delle attrezzature offerte dall’Agent (booleano)."@it ;
+            rdfs:label "Automation"@en ,
+                       "Informatizzazione"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#availability
+:availability rdf:type owl:DatatypeProperty ;
+              rdfs:domain :ConditionOfUse ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "Proprietà che indica la disponibilità di un servizio o un attrezzatura (booleano)."@it ;
+              rdfs:label "Availability"@en ,
+                         "Disponibilità"@it .
+
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#closes
 :closes rdf:type owl:DatatypeProperty ;
@@ -530,6 +822,15 @@ xsd:time rdf:type rdfs:Datatype .
              rdfs:comment "Description" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#duration
+:duration rdf:type owl:DatatypeProperty ;
+          rdfs:domain :ConditionOfUse ;
+          rdfs:range xsd:integer ;
+          rdfs:comment "Proprietà che indica la durata massima di fruizione di un servizio o un’attrezzatura (quanti giorni può durare un prestito bibliotecario, per quante ore è possibile utilizzare una postazione internet, ecc.)."@it ;
+          rdfs:label "Durata"@it ,
+                     "Duration"@en .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#endDate
 :endDate rdf:type owl:DatatypeProperty ;
          rdfs:domain :Interval ;
@@ -537,6 +838,15 @@ xsd:time rdf:type rdfs:Datatype .
          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
          <http://purl.org/dc/elements/1.1/date> "2021-06-03T13:09:01Z"^^xsd:dateTime ;
          rdfs:comment "End datetime for and interval" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#freeAdmission
+:freeAdmission rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Admission ;
+               rdfs:range xsd:boolean ;
+               rdfs:comment "Proprietà che indica la gratuità dell’accesso all’Agent o ai servizi offerti (booleano)."@it ;
+               rdfs:label "Accesso libero/gratuito"@it ,
+                          "Free admission"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#hasCertifiedEmail
@@ -631,6 +941,19 @@ xsd:time rdf:type rdfs:Datatype .
       rdfs:comment "Name" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#numberOf
+:numberOf rdf:type owl:DatatypeProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :ConditionOfUse
+                                      :Equipment
+                                    )
+                      ] ;
+          rdfs:range xsd:integer ;
+          rdfs:comment "Proprietà utilizzata per indicare il numero di specifiche attrezzature possedute dall'istituto."@it ;
+          rdfs:label "Number of"@en ,
+                     "Quantità"@it .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#opens
 :opens rdf:type owl:DatatypeProperty ;
        rdfs:domain :OpeningHoursSpecification ;
@@ -638,6 +961,19 @@ xsd:time rdf:type rdfs:Datatype .
        <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
        <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:56:21Z"^^xsd:dateTime ;
        rdfs:comment "Opening time" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#seatingCapacity
+:seatingCapacity rdf:type owl:DatatypeProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :Area
+                                             :Site
+                                           )
+                             ] ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "Proprietà utilizzata per indicare il numero di posti a sedere disponibili in un’Area o in un Site."@it ;
+                 rdfs:label "Posti disponibili"@it ,
+                            "Seating capacity"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#startDate
@@ -662,8 +998,9 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://culturalis.org/cult/0.1#Agent
 <http://culturalis.org/cult/0.1#Agent> rdf:type owl:Class ;
-                                       owl:equivalentClass <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                           <http://culturalis.org/ocsa/1.0#Agent> ;
+                                       owl:equivalentClass <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                                                           :Agent ,
+                                                           :Operator ;
                                        rdfs:subClassOf :CulturalEntity .
 
 
@@ -671,8 +1008,11 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#ArcheologicalArea> rdf:type owl:Class ;
                                                    owl:equivalentClass <http://schema.org/ArcheologicalSite> ;
                                                    rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                                   <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                                    <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                                   <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                                   <http://culturalis.org/eac-cpf#Entity> ,
+                                                                   :Agent ,
+                                                                   :Operator ;
                                                    rdfs:comment "Archeological area" .
 
 
@@ -692,9 +1032,17 @@ xsd:time rdf:type rdfs:Datatype .
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
+###  http://culturalis.org/cult/0.1#CulturalInstitutionAndSite
+<http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> rdf:type owl:Class ;
+                                                            owl:equivalentClass <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                                                                                :Agent ;
+                                                            rdfs:subClassOf :CulturalEntity .
+
+
 ###  http://culturalis.org/cult/0.1#CulturalInstitutionOrSite
 <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> rdf:type owl:Class ;
-                                                           owl:equivalentClass <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                           owl:equivalentClass <http://culturalis.org/eac-cpf#Entity> ,
+                                                                               :Agent ;
                                                            rdfs:subClassOf :CulturalEntity ;
                                                            rdfs:label "CulturalInstitutionOrSite"@en ,
                                                                       "Istituto/luogo della cultura"@it ;
@@ -712,8 +1060,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://culturalis.org/cult/0.1#HolderOfArchives
 <http://culturalis.org/cult/0.1#HolderOfArchives> rdf:type owl:Class ;
                                                   rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                                  <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                                   <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                                  <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                                  <http://culturalis.org/eac-cpf#Entity> ,
+                                                                  :Agent ,
+                                                                  :Operator ;
                                                   rdfs:comment "Holder of archives" .
 
 
@@ -721,16 +1072,22 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#Library> rdf:type owl:Class ;
                                          owl:equivalentClass <http://schema.org/Library> ;
                                          rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                         <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                          <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                         <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                         <http://culturalis.org/eac-cpf#Entity> ,
+                                                         :Agent ,
+                                                         :Operator ;
                                          rdfs:comment "Library" .
 
 
 ###  http://culturalis.org/cult/0.1#MonumentalArea
 <http://culturalis.org/cult/0.1#MonumentalArea> rdf:type owl:Class ;
                                                 rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                                <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                                 <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                                <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                                <http://culturalis.org/eac-cpf#Entity> ,
+                                                                :Agent ,
+                                                                :Operator ;
                                                 rdfs:comment "Monumental area" .
 
 
@@ -738,8 +1095,11 @@ xsd:time rdf:type rdfs:Datatype .
 <http://culturalis.org/cult/0.1#Museum> rdf:type owl:Class ;
                                         owl:equivalentClass <http://schema.org/Museum> ;
                                         rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                        <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                         <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                        <http://culturalis.org/ocsa/1.0#Agent> ;
+                                                        <http://culturalis.org/eac-cpf#Entity> ,
+                                                        :Agent ,
+                                                        :Operator ;
                                         rdfs:comment "Museum" .
 
 
@@ -754,7 +1114,12 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://culturalis.org/cult/0.1#Organization
 <http://culturalis.org/cult/0.1#Organization> rdf:type owl:Class ;
                                               owl:equivalentClass <http://www.w3.org/ns/org#Organization> ;
-                                              rdfs:subClassOf :Operator ;
+                                              rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                              <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                                                              <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                                                              <http://culturalis.org/eac-cpf#Entity> ,
+                                                              :Agent ,
+                                                              :Operator ;
                                               rdfs:label "Organization"@en ,
                                                          "Organizzazione"@it ;
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -780,20 +1145,21 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://culturalis.org/cult/0.1#Site
 <http://culturalis.org/cult/0.1#Site> rdf:type owl:Class ;
-                                      owl:equivalentClass <http://culturalis.org/ocsa/1.0#Site> ;
+                                      owl:equivalentClass :Site ;
                                       rdfs:comment "Sede dellâistituto/luogo della cultura."@it ;
                                       rdfs:label "Sede"@it ,
                                                  "Site"@en ;
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
-###  http://culturalis.org/ocsa/1.0#Agent
-<http://culturalis.org/ocsa/1.0#Agent> rdf:type owl:Class ;
+###  http://culturalis.org/eac-cpf#Entity
+<http://culturalis.org/eac-cpf#Entity> rdf:type owl:Class ;
+                                       owl:equivalentClass :Agent ;
                                        rdfs:subClassOf :CulturalEntity .
 
 
-###  http://culturalis.org/ocsa/1.0#Site
-<http://culturalis.org/ocsa/1.0#Site> rdf:type owl:Class .
+###  http://linkedevents.org/ontology/Event
+<http://linkedevents.org/ontology/Event> rdf:type owl:Class .
 
 
 ###  http://purl.org/dc/terms/BibliographicResource
@@ -807,70 +1173,97 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://schema.org/ArcheologicalSite
 <http://schema.org/ArcheologicalSite> rdf:type owl:Class ;
                                       rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                      <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                       <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                      <http://culturalis.org/ocsa/1.0#Agent> .
+                                                      <http://culturalis.org/eac-cpf#Entity> ,
+                                                      :Agent ,
+                                                      :Operator .
 
 
 ###  http://schema.org/DefenceSite
 <http://schema.org/DefenceSite> rdf:type owl:Class ;
                                 owl:equivalentClass :DefenceSite ;
                                 rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                 <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                <http://culturalis.org/ocsa/1.0#Agent> .
+                                                <http://culturalis.org/eac-cpf#Entity> ,
+                                                :Agent ,
+                                                :Operator .
 
 
 ###  http://schema.org/Library
 <http://schema.org/Library> rdf:type owl:Class ;
                             rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                            <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                             <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                            <http://culturalis.org/ocsa/1.0#Agent> .
+                                            <http://culturalis.org/eac-cpf#Entity> ,
+                                            :Agent ,
+                                            :Operator .
 
 
 ###  http://schema.org/MovieTheater
 <http://schema.org/MovieTheater> rdf:type owl:Class ;
                                  owl:equivalentClass :MovieTheater ;
                                  rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                 <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                  <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                 <http://culturalis.org/ocsa/1.0#Agent> .
+                                                 <http://culturalis.org/eac-cpf#Entity> ,
+                                                 :Agent ,
+                                                 :Operator .
 
 
 ###  http://schema.org/Museum
 <http://schema.org/Museum> rdf:type owl:Class ;
                            rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                           <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                            <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                           <http://culturalis.org/ocsa/1.0#Agent> .
+                                           <http://culturalis.org/eac-cpf#Entity> ,
+                                           :Agent ,
+                                           :Operator .
 
 
 ###  http://schema.org/ParkAndGarden
 <http://schema.org/ParkAndGarden> rdf:type owl:Class ;
                                   owl:equivalentClass :ParkAndGarden ;
                                   rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                  <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                   <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                  <http://culturalis.org/ocsa/1.0#Agent> .
+                                                  <http://culturalis.org/eac-cpf#Entity> ,
+                                                  :Agent ,
+                                                  :Operator .
 
 
 ###  http://schema.org/ReligiousSite
 <http://schema.org/ReligiousSite> rdf:type owl:Class ;
                                   owl:equivalentClass :ReligiousSite ;
                                   rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                  <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                   <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                  <http://culturalis.org/ocsa/1.0#Agent> .
+                                                  <http://culturalis.org/eac-cpf#Entity> ,
+                                                  :Agent ,
+                                                  :Operator .
 
 
 ###  http://schema.org/RemembranceSite
 <http://schema.org/RemembranceSite> rdf:type owl:Class ;
                                     owl:equivalentClass :RemembranceSite ;
                                     rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                    <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                                     <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                                    <http://culturalis.org/ocsa/1.0#Agent> .
+                                                    <http://culturalis.org/eac-cpf#Entity> ,
+                                                    :Agent ,
+                                                    :Operator .
 
 
 ###  http://schema.org/Theater
 <http://schema.org/Theater> rdf:type owl:Class ;
                             owl:equivalentClass :Theater ;
                             rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                            <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                             <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                            <http://culturalis.org/ocsa/1.0#Agent> .
+                                            <http://culturalis.org/eac-cpf#Entity> ,
+                                            :Agent ,
+                                            :Operator .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#AccessCondition
@@ -880,6 +1273,13 @@ xsd:time rdf:type rdfs:Datatype .
                  rdfs:comment "It represent the access condition to a CIS or Event" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Admission
+:Admission rdf:type owl:Class ;
+           rdfs:comment "Modalità di accesso all'Agent o ai servizi, alle aree, alle attrezzature a disposizione degli utenti (orari di apertura, costi e gratuità, accessibilità, accessi riservati)."@it ;
+           rdfs:label "Admission"@en ,
+                      "Modalità di accesso"@it .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#AdmissionType
 :AdmissionType rdf:type owl:Class ;
                <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
@@ -887,11 +1287,41 @@ xsd:time rdf:type rdfs:Datatype .
                rdfs:comment "It represent the type of admission (weekly, daily...)" .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Agent
+:Agent rdf:type owl:Class ;
+       owl:equivalentClass :Operator ;
+       rdfs:subClassOf :CulturalEntity ;
+       rdfs:comment "Un agente (persona, famiglia, ente pubblico o privato) che offra l’accesso a servizi culturali e/o agisca anche in qualità di istituto culturale."@it ;
+       rdfs:label "Agent"@en ,
+                  "Agente"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Area
+:Area rdf:type owl:Class ;
+      rdfs:comment "Area o spazio specificamente individuato e dedicato al pubblico, ai materiali conservati, a specifiche attività, ecc."@it ;
+      rdfs:label "Area"@en ,
+                 "Area o spazio specificamente individuato"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#ConditionOfUse
+:ConditionOfUse rdf:type owl:Class ;
+                rdfs:comment "Condizione o requisito necessario per  la fruizione dei servizi o l’utilizzo delle attrezzature offerti dall’Agent."@it ;
+                rdfs:label "Condition of use"@en ,
+                           "Condizione o requisito d'uso"@it .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#ContactPoint
 :ContactPoint rdf:type owl:Class ;
               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
               <http://purl.org/dc/elements/1.1/date> "2021-05-27T13:30:31Z"^^xsd:dateTime ;
               rdfs:comment "It represents a contact point (email, phone number...)" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Contacts
+:Contacts rdf:type owl:Class ;
+          rdfs:comment "Insieme dei contatti (numeri di telefono, fax, mail, siti web) di uno specifico Agent, del suo staff, di una sua area o di uno specifico servizio o attività."@it ;
+          rdfs:label "Contacts"@en ,
+                     "Contatti"@it .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#CulturalEntity
@@ -918,8 +1348,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#DefenceSite
 :DefenceSite rdf:type owl:Class ;
              rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                             <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                              <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                             <http://culturalis.org/ocsa/1.0#Agent> ;
+                             <http://culturalis.org/eac-cpf#Entity> ,
+                             :Agent ,
+                             :Operator ;
              <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
              <http://purl.org/dc/elements/1.1/date> "2021-05-29T20:57:38Z"^^xsd:dateTime ;
              rdfs:comment "Defence site" .
@@ -929,7 +1362,10 @@ xsd:time rdf:type rdfs:Datatype .
 :Equipment rdf:type owl:Class ;
            <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
            <http://purl.org/dc/elements/1.1/date> "2021-05-28T12:50:39Z"^^xsd:dateTime ;
-           rdfs:comment "represents the equipment made available by the CIS (printer, totem, ecc.)" .
+           rdfs:comment "Attrezzature posseduta, messa a disposizione o utilizzata da un Agent."@it ,
+                        "represents the equipment made available by the CIS (printer, totem, ecc.)" ;
+           rdfs:label "Attrezzatura"@it ,
+                      "Equipment"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Event
@@ -949,7 +1385,12 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Individual
 :Individual rdf:type owl:Class ;
-            rdfs:subClassOf :Operator ;
+            rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                            <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                            <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                            <http://culturalis.org/eac-cpf#Entity> ,
+                            :Agent ,
+                            :Operator ;
             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
             <http://purl.org/dc/elements/1.1/date> "2021-05-29T20:27:43Z"^^xsd:dateTime ;
             rdfs:comment "Individual" .
@@ -962,11 +1403,21 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#MovieTheater
 :MovieTheater rdf:type owl:Class ;
               rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                              <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                               <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                              <http://culturalis.org/ocsa/1.0#Agent> ;
+                              <http://culturalis.org/eac-cpf#Entity> ,
+                              :Agent ,
+                              :Operator ;
               <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
               <http://purl.org/dc/elements/1.1/date> "2021-05-29T19:29:04Z"^^xsd:dateTime ;
               rdfs:comment "Movie theater" .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Network
+:Network rdf:type owl:Class ;
+         rdfs:comment "Rete o consorzio a cui l’Agent partecipa a vario titolo."@it ;
+         rdfs:label "Network"@en ,
+                    "Network"@it .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#OpeningHoursSpecification
@@ -979,6 +1430,7 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator
 :Operator rdf:type owl:Class ;
+          rdfs:subClassOf :CulturalEntity ;
           <http://purl.org/dc/elements/1.1/creator> "Aless"^^xsd:string ;
           <http://purl.org/dc/elements/1.1/date> "2021-05-27T09:52:20Z"^^xsd:dateTime ;
           rdfs:comment "This class denotes an operator"@en .
@@ -987,8 +1439,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#ParkAndGarden
 :ParkAndGarden rdf:type owl:Class ;
                rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                               <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                               <http://culturalis.org/ocsa/1.0#Agent> ;
+                               <http://culturalis.org/eac-cpf#Entity> ,
+                               :Agent ,
+                               :Operator ;
                <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                <http://purl.org/dc/elements/1.1/date> "2021-05-29T21:03:28Z"^^xsd:dateTime ;
                rdfs:comment "Park and garden" .
@@ -1011,8 +1466,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#ReligiousSite
 :ReligiousSite rdf:type owl:Class ;
                rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                               <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                               <http://culturalis.org/ocsa/1.0#Agent> ;
+                               <http://culturalis.org/eac-cpf#Entity> ,
+                               :Agent ,
+                               :Operator ;
                <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                <http://purl.org/dc/elements/1.1/date> "2021-05-29T18:53:44Z"^^xsd:dateTime ;
                rdfs:comment "Religious site" .
@@ -1021,8 +1479,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RemembranceSite
 :RemembranceSite rdf:type owl:Class ;
                  rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                 <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                  <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                                 <http://culturalis.org/ocsa/1.0#Agent> ;
+                                 <http://culturalis.org/eac-cpf#Entity> ,
+                                 :Agent ,
+                                 :Operator ;
                  <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                  <http://purl.org/dc/elements/1.1/date> "2021-05-29T21:00:58Z"^^xsd:dateTime ;
                  rdfs:comment "Remembrance site" .
@@ -1035,11 +1496,42 @@ xsd:time rdf:type rdfs:Datatype .
       rdfs:comment "This class denotes a role"@en .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RulesAndRegulations
+:RulesAndRegulations rdf:type owl:Class ;
+                     rdfs:comment "Regolamenti, carte dei servizi o altre norme che regolano l’accesso all'Agent e l’erogazione dei servizi."@it ;
+                     rdfs:label "Regolamenti e carte dei servizi"@it ,
+                                "Rules and regulations"@en .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Service
 :Service rdf:type owl:Class ;
          <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
          <http://purl.org/dc/elements/1.1/date> "2021-05-28T12:02:03Z"^^xsd:dateTime ;
-         rdfs:comment "It represents a service provided by the Cultural Institute or Site (wi-fi, bar...)" .
+         rdfs:comment "It represents a service provided by the Cultural Institute or Site (wi-fi, bar...)" ,
+                      "Servizio offerto da un Agent ((consultazione, prestito, riproduzione, visita guidata, attività didattica, accesso ad internet...)."@it ;
+         rdfs:label "Service"@en ,
+                    "Servizio al pubblico"@it .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Site
+:Site rdf:type owl:Class ;
+      rdfs:comment "Sede dell’Agent. Ogni Agent può avere più sedi, con patrimoni, servizi, attrezzature, orari, personale differenziati."@it ;
+      rdfs:label "Sede"@it ,
+                 "Site"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Staff
+:Staff rdf:type owl:Class ;
+       rdfs:comment "Personale che opera all’interno dell’Agent."@it ;
+       rdfs:label "Responsabile"@it ,
+                  "Staff"@en .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#StaffMember
+:StaffMember rdf:type owl:Class ;
+             rdfs:comment "Persona che opera all’interno dell’Agent."@it ;
+             rdfs:label "Membro dello staff"@it ,
+                        "Staff member"@en .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#TemporalDuration
@@ -1070,8 +1562,11 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Theater
 :Theater rdf:type owl:Class ;
          rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                         <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                          <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
-                         <http://culturalis.org/ocsa/1.0#Agent> ;
+                         <http://culturalis.org/eac-cpf#Entity> ,
+                         :Agent ,
+                         :Operator ;
          <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
          <http://purl.org/dc/elements/1.1/date> "2021-05-29T19:03:15Z"^^xsd:dateTime ;
          rdfs:comment "Theater" .
@@ -1109,7 +1604,16 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.w3.org/ns/org#Organization
 <http://www.w3.org/ns/org#Organization> rdf:type owl:Class ;
-                                        rdfs:subClassOf :Operator .
+                                        rdfs:subClassOf <http://culturalis.org/cult/0.1#Agent> ,
+                                                        <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                                                        <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                                                        <http://culturalis.org/eac-cpf#Entity> ,
+                                                        :Agent ,
+                                                        :Operator .
+
+
+###  http://xmlns.com/foaf/0.1/Project
+<http://xmlns.com/foaf/0.1/Project> rdf:type owl:Class .
 
 
 #################################################################
@@ -1138,11 +1642,14 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biblioteca_Comunale_di_Imola
 :Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
                                        <http://culturalis.org/cult/0.1#Agent> ,
+                                       <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                                        <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
                                        <http://culturalis.org/cult/0.1#Library> ,
-                                       <http://culturalis.org/ocsa/1.0#Agent> ,
+                                       <http://culturalis.org/eac-cpf#Entity> ,
                                        <http://schema.org/Library> ,
-                                       :CulturalEntity ;
+                                       :Agent ,
+                                       :CulturalEntity ,
+                                       :Operator ;
                               <http://culturalis.org/cult/0.1#maintains> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
                               <http://culturalis.org/cult/0.1#situated> :Sede_di_Biblioteca_Comunale_di_Imola ;
                               :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
@@ -1365,11 +1872,14 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Museo_Egizio_Torino
 :Museo_Egizio_Torino rdf:type owl:NamedIndividual ,
                               <http://culturalis.org/cult/0.1#Agent> ,
+                              <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                               <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
                               <http://culturalis.org/cult/0.1#Museum> ,
-                              <http://culturalis.org/ocsa/1.0#Agent> ,
+                              <http://culturalis.org/eac-cpf#Entity> ,
                               <http://schema.org/Museum> ,
-                              :CulturalEntity ;
+                              :Agent ,
+                              :CulturalEntity ,
+                              :Operator ;
                      :description "Il Museo Egizio di Torino è il più antico museo, a livello mondiale, interamente dedicato alla civiltà nilotica ed è considerato, per valore e quantità dei reperti, il più importante al mondo dopo quello del Cairo."^^xsd:string ;
                      :name "Museo egizio Torino"^^xsd:string ;
                      <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
@@ -1379,11 +1889,14 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Museo_San_Domenico
 :Museo_San_Domenico rdf:type owl:NamedIndividual ,
                              <http://culturalis.org/cult/0.1#Agent> ,
+                             <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
                              <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
                              <http://culturalis.org/cult/0.1#Museum> ,
-                             <http://culturalis.org/ocsa/1.0#Agent> ,
+                             <http://culturalis.org/eac-cpf#Entity> ,
                              <http://schema.org/Museum> ,
-                             :CulturalEntity ;
+                             :Agent ,
+                             :CulturalEntity ,
+                             :Operator ;
                     <http://culturalis.org/cult/0.1#situated> :Sede_di_Museo_San_Domenico ;
                     :description "Il Museo San Domenico è uno degli edifici più significativi del centro storico di Imola. Ospita le Collezioni d'Arte della Città e il \"Museo Scarabelli\"."^^xsd:string ;
                     :name "Museo di San Domenico"^^xsd:string ;
@@ -1393,6 +1906,12 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0300
 :Operator_0300 rdf:type owl:NamedIndividual ,
+                        <http://culturalis.org/cult/0.1#Agent> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                        <http://culturalis.org/eac-cpf#Entity> ,
+                        :Agent ,
+                        :CulturalEntity ,
                         :Individual ,
                         :Operator ;
                <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Museo_Egizio_Torino_0500 ,
@@ -1404,6 +1923,12 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0301
 :Operator_0301 rdf:type owl:NamedIndividual ,
+                        <http://culturalis.org/cult/0.1#Agent> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                        <http://culturalis.org/eac-cpf#Entity> ,
+                        :Agent ,
+                        :CulturalEntity ,
                         :Individual ,
                         :Operator ;
                <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Museo_Egizio_Torino_0501 ;
@@ -1414,6 +1939,12 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0302
 :Operator_0302 rdf:type owl:NamedIndividual ,
+                        <http://culturalis.org/cult/0.1#Agent> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                        <http://culturalis.org/eac-cpf#Entity> ,
+                        :Agent ,
+                        :CulturalEntity ,
                         :Individual ,
                         :Operator ;
                <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Museo_Egizio_Torino_0503 ;
@@ -1424,7 +1955,13 @@ xsd:time rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Operator_0700
 :Operator_0700 rdf:type owl:NamedIndividual ,
+                        <http://culturalis.org/cult/0.1#Agent> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                        <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
                         <http://culturalis.org/cult/0.1#Organization> ,
+                        <http://culturalis.org/eac-cpf#Entity> ,
+                        :Agent ,
+                        :CulturalEntity ,
                         :Operator ,
                         <http://www.w3.org/ns/org#Organization> ;
                <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Biblioteca_Comunale_di_Imola_0900 ;
@@ -1507,6 +2044,19 @@ xsd:time rdf:type rdfs:Datatype .
                                     <http://purl.org/dc/elements/1.1/date> "2021-06-05T09:57:13Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Rocca_Sforzesca_di_Imola
+:Rocca_Sforzesca_di_Imola rdf:type owl:NamedIndividual ,
+                                   <http://culturalis.org/cult/0.1#Agent> ,
+                                   <http://culturalis.org/cult/0.1#CulturalInstitutionAndSite> ,
+                                   <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ,
+                                   <http://culturalis.org/eac-cpf#Entity> ,
+                                   :Agent ,
+                                   :CulturalEntity ,
+                                   :Operator ;
+                          <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                          <http://purl.org/dc/elements/1.1/date> "2021-06-17T23:03:17Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RoleInTime_Biblioteca_Comunale_di_Imola_0900
 :RoleInTime_Biblioteca_Comunale_di_Imola_0900 rdf:type owl:NamedIndividual ,
                                                        <http://culturalis.org/cult/0.1#RoleInTime> ,
@@ -1564,7 +2114,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Sede_di_Biblioteca_Comunale_di_Imola
 :Sede_di_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
                                                <http://culturalis.org/cult/0.1#Site> ,
-                                               <http://culturalis.org/ocsa/1.0#Site> ;
+                                               :Site ;
                                       :hosts :Conferenza_Esperti_Storia_dei_Libri_Antichi ,
                                              :Mostra_Libri_Antichi_BIM ,
                                              :Mostra_Miniature_BIM ,
@@ -1579,12 +2129,20 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Sede_di_Museo_San_Domenico
 :Sede_di_Museo_San_Domenico rdf:type owl:NamedIndividual ,
                                      <http://culturalis.org/cult/0.1#Site> ,
-                                     <http://culturalis.org/ocsa/1.0#Site> ;
+                                     :Site ;
                             :hosts :Mostra_Galleria_Arte_Museo_San_Domenico_2021 ;
                             :isSiteOf :Museo_San_Domenico ;
                             :name "Sede di Museo San Domenico"^^xsd:string ;
                             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
                             <http://purl.org/dc/elements/1.1/date> "2021-06-15T11:48:44Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Some_Contacts
+:Some_Contacts rdf:type owl:NamedIndividual ,
+                        :Contacts ;
+               :linkingTo :Rocca_Sforzesca_di_Imola ;
+               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+               <http://purl.org/dc/elements/1.1/date> "2021-06-17T23:01:48Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Validity_0101
@@ -1669,6 +2227,126 @@ xsd:time rdf:type rdfs:Datatype .
 :f rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :v rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "A collection included in another collection must be situated in its same site"^^xsd:string ;
+   rdfs:label "S4"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Collections> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#include> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c2
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Collections> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c2
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#situated> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Site> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :s
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#situated> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c2 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "An operator and the operator to whom he reports have to work for the same CIS"^^xsd:string ;
+   rdfs:label "S3"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Operator ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :o
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#hasRole> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :o ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.org/spar/pro/RoleInTime> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :r
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#regardsTo> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :r ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :reportsTo ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :o ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :o2
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :Operator ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :o2
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#hasRole> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :o2 ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :r2
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.org/spar/pro/RoleInTime> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :r2
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                 ]
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#regardsTo> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :r2 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "An event's ContactPoint must be the same of the hosting site's one"^^xsd:string ;
@@ -2022,126 +2700,6 @@ xsd:time rdf:type rdfs:Datatype .
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasValidity ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :t ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :v
-                                                     ] ;
-                                           rdf:rest rdf:nil
-                                         ]
- ] .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "A collection included in another collection must be situated in its same site"^^xsd:string ;
-   rdfs:label "S4"^^xsd:string ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Collections> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#include> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c2
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Collections> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c2
-                                                                           ] ;
-                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#situated> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :c ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :s
-                                                                                      ] ;
-                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Site> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :s
-                                                                                                 ] ;
-                                                                                       rdf:rest rdf:nil
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#situated> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :c2 ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :s
-                                                     ] ;
-                                           rdf:rest rdf:nil
-                                         ]
- ] .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "An operator and the operator to whom he reports have to work for the same CIS"^^xsd:string ;
-   rdfs:label "S3"^^xsd:string ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Operator ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :o
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#hasRole> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :o ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.org/spar/pro/RoleInTime> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :r
-                                                                           ] ;
-                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#regardsTo> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :r ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :c
-                                                                                      ] ;
-                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#CulturalInstitutionOrSite> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c
-                                                                                                 ] ;
-                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :reportsTo ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :o ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :o2
-                                                                                                            ] ;
-                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :Operator ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :o2
-                                                                                                                       ] ;
-                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#hasRole> ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :o2 ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :r2
-                                                                                                                                  ] ;
-                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.org/spar/pro/RoleInTime> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :r2
-                                                                                                                                             ] ;
-                                                                                                                                   rdf:rest rdf:nil
-                                                                                                                                 ]
-                                                                                                                      ]
-                                                                                                           ]
-                                                                                                ]
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#regardsTo> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :r2 ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :c
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
