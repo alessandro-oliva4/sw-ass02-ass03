@@ -1786,6 +1786,13 @@ xsd:time rdf:type rdfs:Datatype .
                                                           <http://purl.org/dc/elements/1.1/date> "2021-06-03T16:59:06Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Ospitante_Cinema_Aperto
+:Ospitante_Cinema_Aperto rdf:type owl:NamedIndividual ,
+                                  :Role ;
+                         <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                         <http://purl.org/dc/elements/1.1/date> "2021-06-18T09:34:49Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Over65
 :Over65 rdf:type owl:NamedIndividual ,
                  :CustomerType ;
@@ -1848,6 +1855,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Rocca_Sforzesca_di_Imola
 :Rocca_Sforzesca_di_Imola rdf:type owl:NamedIndividual ,
                                    <http://culturalis.org/cult/0.1#Agent> ;
+                          <http://culturalis.org/cult/0.1#hasRole> :RoleInTime_Rocca_Sforzesca_di_Imola ;
                           <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                           <http://purl.org/dc/elements/1.1/date> "2021-06-17T23:03:17Z"^^xsd:dateTime .
 
@@ -1899,6 +1907,15 @@ xsd:time rdf:type rdfs:Datatype .
                                      :withRole :Direttore ;
                                      <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                      <http://purl.org/dc/elements/1.1/date> "2021-06-06T11:17:35Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#RoleInTime_Rocca_Sforzesca_di_Imola
+:RoleInTime_Rocca_Sforzesca_di_Imola rdf:type owl:NamedIndividual ,
+                                              <http://culturalis.org/cult/0.1#RoleInTime> ;
+                                     <http://culturalis.org/cult/0.1#regardsTo> :Rocca_Sforzesca_di_Imola ;
+                                     :withRole :Ospitante_Cinema_Aperto ;
+                                     <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
+                                     <http://purl.org/dc/elements/1.1/date> "2021-06-18T09:33:28Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Sede_di_Biblioteca_Comunale_di_Imola
@@ -1954,6 +1971,8 @@ xsd:time rdf:type rdfs:Datatype .
 #    Rules
 #################################################################
 
+:a rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 :c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :c2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
@@ -1971,24 +1990,6 @@ xsd:time rdf:type rdfs:Datatype .
 :e rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :e2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:t rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:tv rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:ti rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:tsd rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:ted rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:ev rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:ei rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:esd rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:eed rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :e1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
@@ -2008,9 +2009,47 @@ xsd:time rdf:type rdfs:Datatype .
 
 :e2ed rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+:t rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:tv rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:ti rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:tsd rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:ted rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:ev rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:ei rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:esd rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:eed rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 :f rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :v rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "S8"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Agent> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Organization> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "A collection included in another collection must be situated in its same site"^^xsd:string ;
@@ -2227,6 +2266,117 @@ xsd:time rdf:type rdfs:Datatype .
  ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "A subevent's validity must be in range of the validity the main event"^^xsd:string ;
+   rdfs:label "S7"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://linkedevents.org/ontology/Event> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :e1
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://linkedevents.org/ontology/Event> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :e2
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Validity ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :e1v
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :Validity ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :e2v
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasValidity ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :e1 ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :e1v
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDuration ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :e1v ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :e1i
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> :startDate ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :e1i ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :e1sd
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :endDate ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :e1i ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :e1ed
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasValidity ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :e2 ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :e2v
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDuration ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :e2v ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument2> :e2i
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#propertyPredicate> :startDate ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument1> :e2i ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument2> :e2sd
+                                                                                                                                                                   ] ;
+                                                                                                                                                         rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                                    rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate> :endDate ;
+                                                                                                                                                                                <http://www.w3.org/2003/11/swrl#argument1> :e2i ;
+                                                                                                                                                                                <http://www.w3.org/2003/11/swrl#argument2> :e2ed
+                                                                                                                                                                              ] ;
+                                                                                                                                                                    rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                                               rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                                                                           <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasSubEvent ;
+                                                                                                                                                                                           <http://www.w3.org/2003/11/swrl#argument1> :e1 ;
+                                                                                                                                                                                           <http://www.w3.org/2003/11/swrl#argument2> :e2
+                                                                                                                                                                                         ] ;
+                                                                                                                                                                               rdf:rest rdf:nil
+                                                                                                                                                                             ]
+                                                                                                                                                                  ]
+                                                                                                                                                       ]
+                                                                                                                                            ]
+                                                                                                                                 ]
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThanOrEqual> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( :e1sd
+                                                                                                    :e2sd
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
+                                                                  <http://www.w3.org/2003/11/swrl#arguments> ( :e1ed
+                                                                                                               :e2ed
+                                                                                                             )
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "A ticket's validity must be in range of the events duration time interval"^^xsd:string ;
    rdfs:label "S6"^^xsd:string ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
@@ -2324,117 +2474,6 @@ xsd:time rdf:type rdfs:Datatype .
                                                                   <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
                                                                   <http://www.w3.org/2003/11/swrl#arguments> ( :eed
                                                                                                                :ted
-                                                                                                             )
-                                                                ] ;
-                                                      rdf:rest rdf:nil
-                                                    ]
-                                         ]
- ] .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "A subevent's validity must be in range of the validity the main event"^^xsd:string ;
-   rdfs:label "S7"^^xsd:string ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :e1
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :e2
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Validity ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :e1v
-                                                                           ] ;
-                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :Validity ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :e2v
-                                                                                      ] ;
-                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasValidity ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :e1 ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :e1v
-                                                                                                 ] ;
-                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDuration ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :e1v ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :e1i
-                                                                                                            ] ;
-                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> :startDate ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :e1i ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :e1sd
-                                                                                                                       ] ;
-                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :endDate ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :e1i ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :e1ed
-                                                                                                                                  ] ;
-                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasValidity ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :e2 ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :e2v
-                                                                                                                                             ] ;
-                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDuration ;
-                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :e2v ;
-                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument2> :e2i
-                                                                                                                                                        ] ;
-                                                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#propertyPredicate> :startDate ;
-                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument1> :e2i ;
-                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument2> :e2sd
-                                                                                                                                                                   ] ;
-                                                                                                                                                         rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                                    rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate> :endDate ;
-                                                                                                                                                                                <http://www.w3.org/2003/11/swrl#argument1> :e2i ;
-                                                                                                                                                                                <http://www.w3.org/2003/11/swrl#argument2> :e2ed
-                                                                                                                                                                              ] ;
-                                                                                                                                                                    rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                                               rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                                                                           <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasSubEvent ;
-                                                                                                                                                                                           <http://www.w3.org/2003/11/swrl#argument1> :e1 ;
-                                                                                                                                                                                           <http://www.w3.org/2003/11/swrl#argument2> :e2
-                                                                                                                                                                                         ] ;
-                                                                                                                                                                               rdf:rest rdf:nil
-                                                                                                                                                                             ]
-                                                                                                                                                                  ]
-                                                                                                                                                       ]
-                                                                                                                                            ]
-                                                                                                                                 ]
-                                                                                                                      ]
-                                                                                                           ]
-                                                                                                ]
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThanOrEqual> ;
-                                                       <http://www.w3.org/2003/11/swrl#arguments> ( :e1sd
-                                                                                                    :e2sd
-                                                                                                  )
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThanOrEqual> ;
-                                                                  <http://www.w3.org/2003/11/swrl#arguments> ( :e1ed
-                                                                                                               :e2ed
                                                                                                              )
                                                                 ] ;
                                                       rdf:rest rdf:nil
