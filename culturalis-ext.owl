@@ -1510,6 +1510,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Biblioteca_Comunale_di_Imola
 :Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
                                        <http://culturalis.org/cult/0.1#Library> ;
+                              <http://culturalis.org/cult/0.1#hasCatalogue> :Catalogo_di_Biblioteca_Comunale_di_Imola ;
                               <http://culturalis.org/cult/0.1#maintains> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
                               :hasContactPoint :Contatti_di_Biblioteca_Comunale_di_Imola ;
                               :provides :Bar_Biblioteca_Comunale_di_Imola ;
@@ -1556,6 +1557,14 @@ xsd:time rdf:type rdfs:Datatype .
                               :name "Biglietto museo San Domenico"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                               <http://purl.org/dc/elements/1.1/date> "2021-06-05T08:56:24Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Catalogo_di_Biblioteca_Comunale_di_Imola
+:Catalogo_di_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
+                                                   <http://culturalis.org/cult/0.1#Catalogue> ;
+                                          <http://culturalis.org/cult/0.1#covers> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
+                                          <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
+                                          <http://purl.org/dc/elements/1.1/date> "2021-06-18T10:59:21Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Conferenza_Esperti_Storia_dei_Libri_Antichi
@@ -1804,6 +1813,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Patrimonio_di_Biblioteca_Comunale_di_Imola
 :Patrimonio_di_Biblioteca_Comunale_di_Imola rdf:type owl:NamedIndividual ,
                                                      <http://culturalis.org/cult/0.1#Collections> ;
+                                            <http://culturalis.org/cult/0.1#include> :Archivio_Casa_Piani ;
                                             :comprises :Archivio_Casa_Piani ;
                                             :name "Patrimonio di Biblioteca Comunale di Imola"^^xsd:string ;
                                             <http://purl.org/dc/elements/1.1/creator> "abetti"^^xsd:string ;
@@ -1821,6 +1831,7 @@ xsd:time rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/aless/ontologies/2021/4/culturalis-ext#Presentazione_Storia_dei_Libri_Antichi_BIM
 :Presentazione_Storia_dei_Libri_Antichi_BIM rdf:type owl:NamedIndividual ,
                                                      :Event ;
+                                            <http://culturalis.org/cult/0.1#involves> :Patrimonio_di_Biblioteca_Comunale_di_Imola ;
                                             <http://purl.org/dc/elements/1.1/creator> "Alessandro"^^xsd:string ;
                                             <http://purl.org/dc/elements/1.1/date> "2021-06-05T13:00:05Z"^^xsd:dateTime .
 
@@ -1973,6 +1984,8 @@ xsd:time rdf:type rdfs:Datatype .
 
 :a rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+:e rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 :c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :c2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
@@ -1986,8 +1999,6 @@ xsd:time rdf:type rdfs:Datatype .
 :o2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :r2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-:e rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :e2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
@@ -2033,6 +2044,40 @@ xsd:time rdf:type rdfs:Datatype .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment ""^^xsd:string ;
+   rdfs:label "S11"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Activity> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :CulturalEntity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :e
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#involves> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :e
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :features ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :e
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
    rdfs:label "S8"^^xsd:string ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
@@ -2046,6 +2091,40 @@ xsd:time rdf:type rdfs:Datatype .
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Organization> ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "S10"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Catalogue> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :CulturalEntity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :e
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#covers> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :e
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :concerns ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :e
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
@@ -2093,6 +2172,40 @@ xsd:time rdf:type rdfs:Datatype .
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#situated> ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :c2 ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "S9"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://culturalis.org/cult/0.1#Collections> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :CulturalEntity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :e
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://culturalis.org/cult/0.1#include> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :e
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :comprises ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :e
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
